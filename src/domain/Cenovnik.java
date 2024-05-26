@@ -1,28 +1,38 @@
 package domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Cenovnik {
 
-    private Trotinet trotinet;
+    private Long cenovnikID;
+    private Long trotinetID;
     private double pocetnaCena;
-    private double cenaPoSatu = 40;
+    private final double cenaPoSatu = 40;
 
-    private void vratiCenuPoTipu(Trotinet t){
+     void vratiCenuPoTipu(Trotinet t) {
         VrstaTrotinetaEnum vrsta = t.getVrstaTrotineta().getVrstaEnum();
 
-        if(vrsta == VrstaTrotinetaEnum.Sharp){
-            pocetnaCena = 80;
-        } else if (vrsta == VrstaTrotinetaEnum.Soflow) {
-            pocetnaCena =  100;
-        } else if (vrsta == VrstaTrotinetaEnum.Segway) {
-            pocetnaCena =  75;
-        } else if (vrsta == VrstaTrotinetaEnum.XIAOMI) {
-            pocetnaCena =  110;
-        } else if (vrsta == VrstaTrotinetaEnum.MS_Energy) {
-            pocetnaCena =  60;
+        switch (vrsta) {
+            case Sharp:
+                pocetnaCena = 80;
+                break;
+            case Soflow:
+                pocetnaCena = 100;
+                break;
+            case Segway:
+                pocetnaCena = 75;
+                break;
+            default:
+            case XIAOMI:
+                pocetnaCena = 110;
+                break;
+            case MS_Energy:
+                pocetnaCena = 60;
+                break;
         }
     }
+
 
 
     public double getPocetnaCena() {

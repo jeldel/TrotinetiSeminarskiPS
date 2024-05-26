@@ -5,6 +5,7 @@ public class Trotinet {
     private Long trotinetID;
     private VrstaTrotinetaEntity vrstaTrotineta;
     private String karakteristike;
+    private Status status;
 
 
     public Long getTrotinetID() {
@@ -29,5 +30,13 @@ public class Trotinet {
 
     public void setKarakteristike(String karakteristike) {
         this.karakteristike = karakteristike;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
