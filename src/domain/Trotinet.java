@@ -11,6 +11,12 @@ public class Trotinet {
     private int ocena;
     private List<Integer> sveOcene;
 
+    public Trotinet(Long trotinetID, VrstaTrotinetaEntity vrstaTrotineta, String karakteristike, Status status) {
+        this.trotinetID = trotinetID;
+        this.vrstaTrotineta = vrstaTrotineta;
+        this.karakteristike = karakteristike;
+        this.status = status;
+    }
 
     public Long getTrotinetID() {
         return trotinetID;

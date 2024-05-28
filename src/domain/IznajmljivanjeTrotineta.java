@@ -8,12 +8,22 @@ public class IznajmljivanjeTrotineta {
     private Date datumVreme;
     private double brojSati;
     private double ukupnaCena;
-    private Long klijentID;
-    private Long administratorID;
-    private Long trotinetID;
+    private Klijent klijent;
+    private Administrator administrator;
+    private Trotinet trotinet;
 
     private void izracunajUkupnuCenu(Double brojSati, Cenovnik pocetnaCena, Cenovnik cenaPoSatu){
         this.ukupnaCena = pocetnaCena.getPocetnaCena() + (brojSati * cenaPoSatu.getCenaPoSatu());
+    }
+
+    public IznajmljivanjeTrotineta(Long iznajmljivanjeID, Date datumVreme, double brojSati, double ukupnaCena, Klijent klijent, Administrator administrator, Trotinet trotinet) {
+        this.iznajmljivanjeID = iznajmljivanjeID;
+        this.datumVreme = datumVreme;
+        this.brojSati = brojSati;
+        this.ukupnaCena = ukupnaCena;
+        this.klijent = klijent;
+        this.administrator = administrator;
+        this.trotinet = trotinet;
     }
 
     public Long getIznajmljivanjeID() {
@@ -48,27 +58,27 @@ public class IznajmljivanjeTrotineta {
         this.ukupnaCena = ukupnaCena;
     }
 
-    public Long getKlijentID() {
-        return klijentID;
+    public Klijent getKlijent() {
+        return klijent;
     }
 
-    public void setKlijentID(Long klijentID) {
-        this.klijentID = klijentID;
+    public void setKlijent(Klijent klijent) {
+        this.klijent = klijent;
     }
 
-    public Long getAdministratorID() {
-        return administratorID;
+    public Administrator getAdministrator() {
+        return administrator;
     }
 
-    public void setAdministratorID(Long administratorID) {
-        this.administratorID = administratorID;
+    public void setAdministrator(Administrator administrator) {
+        this.administrator = administrator;
     }
 
-    public Long getTrotinetID() {
-        return trotinetID;
+    public Trotinet getTrotinet() {
+        return trotinet;
     }
 
-    public void setTrotinetID(Long trotinetID) {
-        this.trotinetID = trotinetID;
+    public void setTrotinet(Trotinet trotinet) {
+        this.trotinet = trotinet;
     }
 }

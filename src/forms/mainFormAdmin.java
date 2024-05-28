@@ -15,6 +15,7 @@ public class mainFormAdmin extends JDialog {
     public mainFormAdmin() {
         setContentPane(contentPane);
         setModal(true);
+        setBounds(500,200,300,300);
         getRootPane().setDefaultButton(buttonOK);
 
 
@@ -49,7 +50,6 @@ public class mainFormAdmin extends JDialog {
 
     public static void main(String[] args) {
         mainFormAdmin dialog = new mainFormAdmin();
-        dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }

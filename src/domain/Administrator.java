@@ -20,6 +20,9 @@ public class Administrator {
         this.password = password;
     }
 
+    public Administrator() {
+    }
+
     public Long getAdministratorID() {
         return administratorID;
     }

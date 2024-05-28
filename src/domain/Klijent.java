@@ -6,20 +6,32 @@ public class Klijent {
     private String ime;
     private String prezime;
     private String email;
+    private String username;
     private String sifra;
-    private String adresa;
+    private String grad;
     private String telefon;
 
-    public Klijent(Long klijentID, String ime, String prezime, String email, String sifra, String adresa, String telefon) {
+    public Klijent() {
+    }
+
+    public Klijent(Long klijentID, String ime, String prezime, String username, String sifra, String grad, String email, String telefon) {
         this.klijentID = klijentID;
         this.ime = ime;
-        this.prezime = prezime;
         this.email = email;
+        this.prezime = prezime;
         this.sifra = sifra;
-        this.adresa = adresa;
+        this.username = username;
+        this.grad = grad;
         this.telefon = telefon;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     public String getTelefon() {
         return telefon;
     }
@@ -28,12 +40,12 @@ public class Klijent {
         this.telefon = telefon;
     }
 
-    public String getAdresa() {
-        return adresa;
+    public String getGrad() {
+        return grad;
     }
 
-    public void setAdresa(String adresa) {
-        this.adresa = adresa;
+    public void setGrad(String grad) {
+        this.grad = grad;
     }
 
     public String getSifra() {
@@ -84,7 +96,7 @@ public class Klijent {
                 ", prezime='" + prezime + '\'' +
                 ", email='" + email + '\'' +
                 ", sifra='" + sifra + '\'' +
-                ", adresa='" + adresa + '\'' +
+                ", grad='" + grad + '\'' +
                 ", telefon='" + telefon + '\'' +
                 '}';
     }

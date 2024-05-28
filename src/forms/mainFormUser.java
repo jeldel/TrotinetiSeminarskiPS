@@ -16,6 +16,7 @@ public class mainFormUser extends JDialog {
     public mainFormUser() {
         setContentPane(contentPane);
         setModal(true);
+        setBounds(500,200,500,300);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
