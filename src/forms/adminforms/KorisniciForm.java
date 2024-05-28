@@ -1,24 +1,27 @@
-package forms;
+package forms.adminforms;
+
+import forms.mainFormAdmin;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class mainFormUser extends JDialog {
+public class KorisniciForm extends JDialog {
     private JPanel contentPane;
-    private JButton buttonCancel;
-    private JLabel lblWelcome;
-    private JButton btnSearchTrotinet;
-    private JLabel lblSearch;
-    private JComboBox comboBoxSearch;
 
-    public mainFormUser() {
+    private JButton btnReturn;
+    private JButton btnCreate;
+    private JLabel lblSearch;
+    private JTextField txtSearch;
+    private JButton btnSearch;
+
+    public KorisniciForm() {
         setContentPane(contentPane);
         setModal(true);
-        setBounds(500,200,400,200);
+        setBounds(500,200, 500,200);
 
-        buttonCancel.addActionListener(new ActionListener() {
+        btnReturn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
+                onReturn();
             }
         });
 
@@ -38,13 +41,24 @@ public class mainFormUser extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    private void onReturn() {
+        dispose();
+        new mainFormAdmin().setVisible(true);
+    }
+
+    private void onOK() {
+        // add your code here
+        dispose();
+    }
+
     private void onCancel() {
         // add your code here if necessary
         dispose();
     }
 
     public static void main(String[] args) {
-        mainFormUser dialog = new mainFormUser();
+        KorisniciForm dialog = new KorisniciForm();
+
         dialog.setVisible(true);
     }
 }

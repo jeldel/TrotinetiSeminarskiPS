@@ -1,24 +1,26 @@
-package forms;
+package forms.adminforms;
+
+import forms.mainFormAdmin;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class mainFormUser extends JDialog {
+public class VoznjeForm extends JDialog {
     private JPanel contentPane;
-    private JButton buttonCancel;
-    private JLabel lblWelcome;
-    private JButton btnSearchTrotinet;
+    private JButton btnReturn;
+    private JButton btnCreate;
+    private JTextField txtSearch;
     private JLabel lblSearch;
-    private JComboBox comboBoxSearch;
+    private JButton btnSearch;
 
-    public mainFormUser() {
+    public VoznjeForm() {
         setContentPane(contentPane);
         setModal(true);
-        setBounds(500,200,400,200);
+        setBounds(500,200, 500,200);
 
-        buttonCancel.addActionListener(new ActionListener() {
+        btnReturn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
+                onReturn();
             }
         });
 
@@ -38,13 +40,19 @@ public class mainFormUser extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    private void onReturn() {
+        dispose();
+        new mainFormAdmin().setVisible(true);
+    }
+
+
     private void onCancel() {
         // add your code here if necessary
         dispose();
     }
 
     public static void main(String[] args) {
-        mainFormUser dialog = new mainFormUser();
+        VoznjeForm dialog = new VoznjeForm();
         dialog.setVisible(true);
     }
 }
