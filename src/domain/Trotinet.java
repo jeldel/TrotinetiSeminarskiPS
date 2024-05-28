@@ -1,11 +1,15 @@
 package domain;
 
+import java.util.List;
+
 public class Trotinet {
 
     private Long trotinetID;
     private VrstaTrotinetaEntity vrstaTrotineta;
     private String karakteristike;
     private Status status;
+    private int ocena;
+    private List<Integer> sveOcene;
 
 
     public Long getTrotinetID() {
