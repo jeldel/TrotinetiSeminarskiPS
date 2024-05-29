@@ -20,6 +20,7 @@ public class mainFormAdmin extends JDialog {
     public mainFormAdmin() {
         setContentPane(contentPane);
         setModal(true);
+        setTitle("Admin forma");
         setBounds(500,200,300,300);
 
         btnClose.addActionListener(new ActionListener() {

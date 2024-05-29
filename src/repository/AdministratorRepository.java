@@ -17,4 +17,9 @@ public class AdministratorRepository {
     public List<Administrator> getAll(){
         return administratori;
     }
+
+
+    public void add(Administrator admin){
+        administratori.add(admin);
+    }
 }

@@ -30,6 +30,17 @@ public class KlijentController {
     }
 
 
+    public List<Klijent> getAll(){
+        return storageKlijent.getAll();
+    }
+
+    public void add(Klijent klijent) throws Exception{
+        if(storageKlijent.getAll().contains(klijent)){
+            throw new Exception("Korisnik vec postoji!");
+        }
+        storageKlijent.add(klijent);
+    }
+
 
 
 }

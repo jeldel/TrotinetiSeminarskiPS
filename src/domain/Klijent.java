@@ -8,13 +8,13 @@ public class Klijent {
     private String email;
     private String username;
     private String sifra;
-    private String grad;
+    private GradEnum grad;
     private String telefon;
 
     public Klijent() {
     }
 
-    public Klijent(Long klijentID, String ime, String prezime, String username, String sifra, String grad, String email, String telefon) {
+    public Klijent(Long klijentID, String ime, String prezime, String username, String sifra, GradEnum grad, String email, String telefon) {
         this.klijentID = klijentID;
         this.ime = ime;
         this.email = email;
@@ -40,11 +40,11 @@ public class Klijent {
         this.telefon = telefon;
     }
 
-    public String getGrad() {
+    public GradEnum getGrad() {
         return grad;
     }
 
-    public void setGrad(String grad) {
+    public void setGrad(GradEnum grad) {
         this.grad = grad;
     }
 

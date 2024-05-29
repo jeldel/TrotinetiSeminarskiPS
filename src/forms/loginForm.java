@@ -24,7 +24,8 @@ public class loginForm extends JDialog {
     public loginForm() {
         setContentPane(contentPane);
         setModal(true);
-        setBounds(500,200,250,250);
+        setTitle("Login forma");
+        setBounds(500,200,350,200);
         getRootPane().setDefaultButton(btnLogin);
         controllerKlijent = new KlijentController();
         controllerAdmin = new AdministratorController();
@@ -93,20 +94,6 @@ public class loginForm extends JDialog {
         }
     }
 
-    /*private void onLogin() throws Exception {
-        try {
-            validateForm();
-            //ovde moram da dodam distinkciju za admina i usera
-            new mainFormUser().setVisible(true);
-            this.dispose();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage(),"Neuspesno prijavljivanje na sistem", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-     */
-
 
     private void onCancel() {
         // add your code here if necessary
@@ -115,7 +102,6 @@ public class loginForm extends JDialog {
 
     public static void main(String[] args) {
         loginForm dialog = new loginForm();
-        dialog.pack();
         dialog.setVisible(true);
     }
 }

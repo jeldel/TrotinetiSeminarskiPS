@@ -1,0 +1,145 @@
+package forms.adminforms;
+
+import controller.KlijentController;
+import domain.GradEnum;
+import domain.Klijent;
+import forms.loginForm;
+import forms.mainFormAdmin;
+
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.List;
+
+public class CreateKorisnikForm extends JDialog {
+    private JPanel contentPane;
+    private JButton buttonOK;
+    private JButton buttonCancel;
+    private JLabel lblName;
+    private JLabel lblSurname;
+    private JLabel lblEmail;
+    private JTextField txtEmail;
+    private JTextField txtName;
+    private JTextField txtSurname;
+    private JLabel lblPassword;
+    private JLabel lblCity;
+    private JComboBox comboBoxCity;
+    private JLabel lblTelefon;
+    private JLabel lblUsername;
+    private JTextField txtUsername;
+    private JTextField txtPhone;
+    private JPasswordField passwordField1;
+
+
+    private final KlijentController controller;
+
+
+    public CreateKorisnikForm() {
+        setContentPane(contentPane);
+        setModal(true);
+        getRootPane().setDefaultButton(buttonOK);
+        setBounds(500,200, 450,400);
+        setTitle("Kreiranje korisnika");
+
+        this.controller = new KlijentController();
+
+        try {
+            prepareView();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Greska! " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+        buttonOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOK();
+            }
+        });
+
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onReturn();
+            }
+        });
+
+        // call onCancel() when cross is clicked
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
+            }
+        });
+
+        // call onCancel() on ESCAPE
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    }
+
+    private void onReturn() {
+        dispose();
+        new mainFormAdmin().setVisible(true);
+    }
+
+    private void prepareView() throws Exception {
+        comboBoxCity.removeAllItems();
+        for (GradEnum grad : GradEnum.values()) comboBoxCity.addItem(grad);
+    }
+
+    private void onOK() {
+        try {
+            validation();
+
+            Klijent klijent = new Klijent();
+
+            JOptionPane.showMessageDialog(this, "Sistem je kreirao korisnika!");
+
+            klijent.setIme(txtName.getText().trim());
+            klijent.setPrezime(txtSurname.getText().trim());
+            klijent.setEmail(txtEmail.getText().trim());
+            klijent.setGrad((GradEnum) comboBoxCity.getSelectedItem());
+            klijent.setTelefon(txtPhone.getText().trim());
+            klijent.setUsername(txtUsername.getText().trim());
+            klijent.setSifra(String.valueOf(passwordField1.getPassword()));
+
+            controller.add(klijent);
+            JOptionPane.showMessageDialog(this, "Sistem je zapamtio korisnika!");
+            System.out.println(controller.getAll());
+            dispose();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira korisnika! " + e.getMessage(), "Greska!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void validation() throws Exception {
+        if(txtName.getText().length() < 2){
+            throw new RuntimeException("Ime mora biti duze od jednog karaktera!");
+        }
+        if(txtSurname.getText().length() < 2){
+            throw new RuntimeException("Prezime mora biti duze od jednog karaktera!");
+        }
+        if(!(txtEmail.getText().contains("@"))){
+            throw new RuntimeException("Email mora sadrzati @ karakter!");
+        }
+        if(txtUsername.getText().length() < 3){
+            throw new RuntimeException("Korisnicko ime mora imati vise od tri karaktera!");
+        }
+        if(passwordField1.getPassword().length < 3){
+            throw new RuntimeException("Sifra mora imati vise od tri karaktera!");
+        }
+    }
+
+    private void onCancel() {
+        // add your code here if necessary
+        dispose();
+    }
+
+    public static void main(String[] args) {
+        CreateKorisnikForm dialog = new CreateKorisnikForm();
+        dialog.setVisible(true);
+    }
+}

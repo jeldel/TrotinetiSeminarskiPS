@@ -1,9 +1,6 @@
 package repository;
 
-import domain.Status;
 import domain.Trotinet;
-import domain.VrstaTrotinetaEntity;
-import domain.VrstaTrotinetaEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,5 +15,9 @@ public class TrotinetRepository {
 
     public List<Trotinet> getAll(){
         return trotineti;
+    }
+
+    public void add(Trotinet trotinet){
+        trotineti.add(trotinet);
     }
 }
