@@ -1,6 +1,6 @@
 package forms.adminforms;
 
-import controller.TrotinetController;
+import controller.Controller;
 import domain.Status;
 import domain.Trotinet;
 import domain.VrstaTrotinetaEnum;
@@ -19,7 +19,6 @@ public class CreateTrotinetForm extends JDialog {
     private JComboBox cmbStatus;
     private JLabel lblStatus;
 
-    private final TrotinetController controller;
 
     public CreateTrotinetForm() {
         setContentPane(contentPane);
@@ -28,7 +27,6 @@ public class CreateTrotinetForm extends JDialog {
         setBounds(500,200, 450,400);
         setTitle("Kreiranje trotineta");
 
-        this.controller = new TrotinetController();
         try {
 
             prepareView();
@@ -87,9 +85,9 @@ public class CreateTrotinetForm extends JDialog {
             t.setKarakteristike(textPane1.getText());
             t.setStatus((Status)cmbStatus.getSelectedItem());
 
-            controller.add(t);
+            Controller.getInstance().addTrotinet(t);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio trotinet!");
-            System.out.println(controller.getAll());
+            System.out.println(Controller.getInstance().getAllTrotinet());
             dispose();
 
         }catch (Exception e){
@@ -99,7 +97,7 @@ public class CreateTrotinetForm extends JDialog {
 
 
     private void onCancel() {
-        // add your code here if necessary
+        // addKlijent your code here if necessary
         dispose();
     }
 

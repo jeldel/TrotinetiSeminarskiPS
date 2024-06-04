@@ -1,7 +1,6 @@
 package forms;
 
-import controller.AdministratorController;
-import controller.KlijentController;
+import controller.Controller;
 import domain.Administrator;
 import domain.Klijent;
 
@@ -18,8 +17,6 @@ public class loginForm extends JDialog {
     private JLabel lblPassword;
     private JPasswordField txtPassword;
 
-    private final KlijentController controllerKlijent;
-    private final AdministratorController controllerAdmin;
 
     public loginForm() {
         setContentPane(contentPane);
@@ -27,22 +24,21 @@ public class loginForm extends JDialog {
         setTitle("Login forma");
         setBounds(500,200,350,200);
         getRootPane().setDefaultButton(btnLogin);
-        controllerKlijent = new KlijentController();
-        controllerAdmin = new AdministratorController();
+
 
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     validateForm();
 
-                    Klijent klijent = controllerKlijent.login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
+                    Klijent klijent = Controller.getInstance().loginKlijent(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
 
                     if(klijent != null) {
                         dispose();
                         new mainFormUser().setVisible(true);
                     }
                     else{
-                        Administrator admin = controllerAdmin.login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
+                        Administrator admin = Controller.getInstance().loginAdmin(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
                         if (admin != null){
                             dispose();
                             new mainFormAdmin().setVisible(true);
@@ -96,7 +92,7 @@ public class loginForm extends JDialog {
 
 
     private void onCancel() {
-        // add your code here if necessary
+        // addKlijent your code here if necessary
         dispose();
     }
 

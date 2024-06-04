@@ -1,14 +1,12 @@
 package forms.adminforms;
 
-import controller.KlijentController;
+import controller.Controller;
 import domain.GradEnum;
 import domain.Klijent;
-import forms.loginForm;
 import forms.mainFormAdmin;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.List;
 
 public class CreateKorisnikForm extends JDialog {
     private JPanel contentPane;
@@ -30,17 +28,12 @@ public class CreateKorisnikForm extends JDialog {
     private JPasswordField passwordField1;
 
 
-    private final KlijentController controller;
-
-
     public CreateKorisnikForm() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         setBounds(500,200, 450,400);
         setTitle("Kreiranje korisnika");
-
-        this.controller = new KlijentController();
 
         try {
             prepareView();
@@ -105,9 +98,9 @@ public class CreateKorisnikForm extends JDialog {
             klijent.setUsername(txtUsername.getText().trim());
             klijent.setSifra(String.valueOf(passwordField1.getPassword()));
 
-            controller.add(klijent);
+            Controller.getInstance().addKlijent(klijent);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio korisnika!");
-            System.out.println(controller.getAll());
+            System.out.println(Controller.getInstance().getAllKlijent());
             dispose();
 
         } catch (Exception e) {
@@ -134,7 +127,7 @@ public class CreateKorisnikForm extends JDialog {
     }
 
     private void onCancel() {
-        // add your code here if necessary
+        // addKlijent your code here if necessary
         dispose();
     }
 
