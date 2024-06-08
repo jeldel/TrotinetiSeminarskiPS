@@ -53,6 +53,14 @@ public class Trotinet {
         this.status = status;
     }
 
+    public int getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(int ocena) {
+        this.ocena = ocena;
+    }
+
     @Override
     public String toString() {
         return "Trotinet{" +

@@ -14,7 +14,7 @@ public class Klijent {
     public Klijent() {
     }
 
-    public Klijent(Long klijentID, String ime, String prezime, String username, String sifra, GradEnum grad, String email, String telefon) {
+    public Klijent(Long klijentID, String ime, String prezime, String email, GradEnum grad, String telefon, String username, String sifra) {
         this.klijentID = klijentID;
         this.ime = ime;
         this.email = email;

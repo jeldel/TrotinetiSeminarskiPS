@@ -86,7 +86,7 @@ public class CreateKorisnikForm extends JDialog {
         try {
             validation();
 
-            Klijent klijent = new Klijent();
+            Klijent klijent = new Klijent(1L, "Pera", "Peric", "peraperic@pp.com",GradEnum.Beograd, "063/1111-111", "peraperic","peraperic");
 
             JOptionPane.showMessageDialog(this, "Sistem je kreirao korisnika!");
 

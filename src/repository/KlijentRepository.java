@@ -12,7 +12,7 @@ public class KlijentRepository {
 
     public KlijentRepository() {
         klijenti = new ArrayList<>();
-        klijenti.add(new Klijent(1L, "Pera", "Peric","peraperic","pera", GradEnum.Beograd,"peraperic@pp.com","063/1111-111"));
+        klijenti.add(new Klijent(1L, "Pera", "Peric", "peraperic@pp.com",GradEnum.Beograd, "063/1111-111", "peraperic","peraperic"));
     }
 
 
