@@ -2,7 +2,7 @@ package forms.adminforms;
 
 import controller.Controller;
 import domain.GradEnum;
-import domain.Klijent;
+import domain.Korisnik;
 import forms.mainFormAdmin;
 
 import javax.swing.*;
@@ -86,21 +86,21 @@ public class CreateKorisnikForm extends JDialog {
         try {
             validation();
 
-            Klijent klijent = new Klijent(1L, "Pera", "Peric", "peraperic@pp.com",GradEnum.Beograd, "063/1111-111", "peraperic","peraperic");
+            Korisnik korisnik = new Korisnik(1L, "Pera", "Peric", "peraperic@pp.com",GradEnum.Beograd, "063/1111-111", "peraperic","peraperic");
 
             JOptionPane.showMessageDialog(this, "Sistem je kreirao korisnika!");
 
-            klijent.setIme(txtName.getText().trim());
-            klijent.setPrezime(txtSurname.getText().trim());
-            klijent.setEmail(txtEmail.getText().trim());
-            klijent.setGrad((GradEnum) comboBoxCity.getSelectedItem());
-            klijent.setTelefon(txtPhone.getText().trim());
-            klijent.setUsername(txtUsername.getText().trim());
-            klijent.setSifra(String.valueOf(passwordField1.getPassword()));
+            korisnik.setIme(txtName.getText().trim());
+            korisnik.setPrezime(txtSurname.getText().trim());
+            korisnik.setEmail(txtEmail.getText().trim());
+            korisnik.setGrad((GradEnum) comboBoxCity.getSelectedItem());
+            korisnik.setTelefon(txtPhone.getText().trim());
+            korisnik.setUsername(txtUsername.getText().trim());
+            korisnik.setSifra(String.valueOf(passwordField1.getPassword()));
 
-            Controller.getInstance().addKlijent(klijent);
+            Controller.getInstance().addKorisnik(korisnik);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio korisnika!");
-            System.out.println(Controller.getInstance().getAllKlijent());
+            System.out.println(Controller.getInstance().getAllKorisnik());
             dispose();
 
         } catch (Exception e) {
@@ -127,7 +127,7 @@ public class CreateKorisnikForm extends JDialog {
     }
 
     private void onCancel() {
-        // addKlijent your code here if necessary
+        // add your code here if necessary
         dispose();
     }
 

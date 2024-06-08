@@ -84,12 +84,12 @@ public class DBBroker {
 
     }
 
-    public void kreirajKorisnika(Klijent k){
+    public void kreirajKorisnika(Korisnik k){
         try {
             String query = "INSERT INTO korisnik (korisnikID, ime, prezime, email, grad, telefon, username, sifra) VALUES (?,?,?,?,?,?,?,?)";
             System.out.println(query);
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, k.getKlijentID());
+            statement.setLong(1, k.getkorisnikID());
             statement.setString(2, k.getIme());
             statement.setString(3, k.getPrezime());
             statement.setString(4, k.getEmail());
@@ -107,17 +107,17 @@ public class DBBroker {
         }
     }
 
-    public List<Klijent> vratiSveKorisnike(){
+    public List<Korisnik> vratiSveKorisnike(){
         try {
-            List<Klijent> klijenti = new ArrayList<Klijent>();
+            List<Korisnik> korisnici = new ArrayList<Korisnik>();
             String query = "SELECT korisnikID, ime, prezime, email, grad, telefon, username, sifra FROM korisnik";
             System.out.println(query);
 
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while(rs.next()){
-               Klijent k = new Klijent();
-                k.setKlijentID(rs.getLong("korisnikID"));
+               Korisnik k = new Korisnik();
+                k.setkorisnikID(rs.getLong("korisnikID"));
                 k.setIme(rs.getString("ime"));
                 k.setPrezime(rs.getString("prezime"));
                 k.setEmail(rs.getString("email"));
@@ -125,12 +125,12 @@ public class DBBroker {
                 k.setTelefon(rs.getString("telefon"));
                 k.setUsername(rs.getString("username"));
                 k.setSifra(rs.getString("sifra"));
-                klijenti.add(k);
+                korisnici.add(k);
             }
             rs.close();
             statement.close();
             System.out.println("Uspesno ucitana lista korisnika");
-            return klijenti;
+            return korisnici;
         } catch (SQLException e) {
             System.out.println("Neuspesno ucitana lista korisnika");
             throw new RuntimeException(e);

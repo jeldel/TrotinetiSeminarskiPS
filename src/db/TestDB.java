@@ -19,8 +19,8 @@ public class TestDB {
 
         //System.out.println(db.vratiSveTrotinete());
 
-        Klijent k1 = new Klijent(2L, "Jelena", "Delic", "jelenadelic@jd.com", GradEnum.Beograd, "0601333327", "jelenadelic", "jelena");
-        List<Klijent> klijenti = new ArrayList<>();
+        Korisnik k1 = new Korisnik(2L, "Jelena", "Delic", "jelenadelic@jd.com", GradEnum.Beograd, "0601333327", "jelenadelic", "jelena");
+        List<Korisnik> klijenti = new ArrayList<>();
         klijenti.add(k1);
         db.kreirajKorisnika(k1);
 

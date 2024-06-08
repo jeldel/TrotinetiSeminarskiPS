@@ -1,8 +1,8 @@
 package domain;
 
-public class Klijent {
+public class Korisnik {
 
-    private Long klijentID;
+    private Long korisnikID;
     private String ime;
     private String prezime;
     private String email;
@@ -11,11 +11,11 @@ public class Klijent {
     private GradEnum grad;
     private String telefon;
 
-    public Klijent() {
+    public Korisnik() {
     }
 
-    public Klijent(Long klijentID, String ime, String prezime, String email, GradEnum grad, String telefon, String username, String sifra) {
-        this.klijentID = klijentID;
+    public Korisnik(Long korisnikID, String ime, String prezime, String email, GradEnum grad, String telefon, String username, String sifra) {
+        this.korisnikID = korisnikID;
         this.ime = ime;
         this.email = email;
         this.prezime = prezime;
@@ -80,18 +80,18 @@ public class Klijent {
         this.ime = ime;
     }
 
-    public Long getKlijentID() {
-        return klijentID;
+    public Long getkorisnikID() {
+        return korisnikID;
     }
 
-    public void setKlijentID(Long klijentID) {
-        this.klijentID = klijentID;
+    public void setkorisnikID(Long korisnikID) {
+        this.korisnikID = korisnikID;
     }
 
     @Override
     public String toString() {
-        return "Klijent{" +
-                "klijentID=" + klijentID +
+        return "Korisnik{" +
+                "korisnikID=" + korisnikID +
                 ", ime='" + ime + '\'' +
                 ", prezime='" + prezime + '\'' +
                 ", email='" + email + '\'' +

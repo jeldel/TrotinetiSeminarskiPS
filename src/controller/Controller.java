@@ -2,25 +2,25 @@ package controller;
 
 import domain.Administrator;
 import domain.IznajmljivanjeTrotineta;
-import domain.Klijent;
+import domain.Korisnik;
 import domain.Trotinet;
 import repository.AdministratorRepository;
 import repository.IznajmljivanjeRepository;
-import repository.KlijentRepository;
+import repository.KorisnikRepository;
 import repository.TrotinetRepository;
 
 import java.util.List;
 
 public class Controller {
     private static Controller instance;
-    private final KlijentRepository storageKlijent;
+    private final KorisnikRepository storageKorisnik;
     private final TrotinetRepository storageTrotinet;
     private final AdministratorRepository storageAdmin;
     private final IznajmljivanjeRepository storageIznajmljivanje;
 
     private Controller(){
         storageAdmin = new AdministratorRepository();
-        storageKlijent = new KlijentRepository();
+        storageKorisnik = new KorisnikRepository();
         storageTrotinet = new TrotinetRepository();
         storageIznajmljivanje = new IznajmljivanjeRepository();
     }
@@ -40,11 +40,11 @@ public class Controller {
         storageTrotinet.add(t);
     }
 
-    public void addKlijent(Klijent klijent) throws Exception{
-        if(storageKlijent.getAll().contains(klijent)){
+    public void addKorisnik(Korisnik korisnik) throws Exception{
+        if(storageKorisnik.getAll().contains(korisnik)){
             throw new Exception("Korisnik vec postoji!");
         }
-        storageKlijent.add(klijent);
+        storageKorisnik.add(korisnik);
     }
 
     public void addVoznja(IznajmljivanjeTrotineta it) throws Exception{
@@ -58,8 +58,8 @@ public class Controller {
     public List<Trotinet> getAllTrotinet(){
         return storageTrotinet.getAll();
     }
-    public List<Klijent> getAllKlijent(){
-        return storageKlijent.getAll();
+    public List<Korisnik> getAllKorisnik(){
+        return storageKorisnik.getAll();
     }
     public List<IznajmljivanjeTrotineta> getAllVoznje(){
         return storageIznajmljivanje.getAll();
@@ -78,12 +78,12 @@ public class Controller {
         return null;
     }
 
-    public Klijent loginKlijent(String username, String password) {
-        List<Klijent> klijenti = storageKlijent.getAll();
+    public Korisnik loginKorisnik(String username, String password) {
+        List<Korisnik> korisnici = storageKorisnik.getAll();
 
-        for (Klijent klijent : klijenti){
-            if(klijent.getUsername().equals(username) && klijent.getSifra().equals(password)){
-                return klijent;
+        for (Korisnik korisnik : korisnici){
+            if(korisnik.getUsername().equals(username) && korisnik.getSifra().equals(password)){
+                return korisnik;
             }
         }
 

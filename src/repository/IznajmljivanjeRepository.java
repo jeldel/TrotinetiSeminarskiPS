@@ -1,7 +1,6 @@
 package repository;
 
 import domain.IznajmljivanjeTrotineta;
-import domain.Klijent;
 
 import java.util.ArrayList;
 import java.util.List;

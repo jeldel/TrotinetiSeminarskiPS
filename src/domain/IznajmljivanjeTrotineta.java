@@ -8,7 +8,7 @@ public class IznajmljivanjeTrotineta {
     private Date datumVreme;
     private double brojSati;
     private double ukupnaCena;
-    private Klijent klijent;
+    private Korisnik korisnik;
     private Administrator administrator;
     private Trotinet trotinet;
 
@@ -16,12 +16,12 @@ public class IznajmljivanjeTrotineta {
         this.ukupnaCena = pocetnaCena.getPocetnaCena() + (brojSati * cenaPoSatu.getCenaPoSatu());
     }
 
-    public IznajmljivanjeTrotineta(Long iznajmljivanjeID, Date datumVreme, double brojSati, double ukupnaCena, Klijent klijent, Administrator administrator, Trotinet trotinet) {
+    public IznajmljivanjeTrotineta(Long iznajmljivanjeID, Date datumVreme, double brojSati, double ukupnaCena, Korisnik korisnik, Administrator administrator, Trotinet trotinet) {
         this.iznajmljivanjeID = iznajmljivanjeID;
         this.datumVreme = datumVreme;
         this.brojSati = brojSati;
         this.ukupnaCena = ukupnaCena;
-        this.klijent = klijent;
+        this.korisnik = korisnik;
         this.administrator = administrator;
         this.trotinet = trotinet;
     }
@@ -58,12 +58,12 @@ public class IznajmljivanjeTrotineta {
         this.ukupnaCena = ukupnaCena;
     }
 
-    public Klijent getKlijent() {
-        return klijent;
+    public Korisnik getKorisnik() {
+        return korisnik;
     }
 
-    public void setKlijent(Klijent klijent) {
-        this.klijent = klijent;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     public Administrator getAdministrator() {

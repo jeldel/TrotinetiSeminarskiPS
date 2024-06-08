@@ -70,7 +70,7 @@ public class mainFormAdmin extends JDialog {
 
 
     private void onCancel() {
-        // addKlijent your code here if necessary
+        // add your code here if necessary
         dispose();
     }
 

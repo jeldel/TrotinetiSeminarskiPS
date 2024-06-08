@@ -2,7 +2,7 @@ package forms;
 
 import controller.Controller;
 import domain.Administrator;
-import domain.Klijent;
+import domain.Korisnik;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -31,9 +31,9 @@ public class loginForm extends JDialog {
                 try {
                     validateForm();
 
-                    Klijent klijent = Controller.getInstance().loginKlijent(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
+                    Korisnik korisnik = Controller.getInstance().loginKorisnik(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
 
-                    if(klijent != null) {
+                    if(korisnik != null) {
                         dispose();
                         new mainFormUser().setVisible(true);
                     }
@@ -92,7 +92,7 @@ public class loginForm extends JDialog {
 
 
     private void onCancel() {
-        // addKlijent your code here if necessary
+        // add your code here if necessary
         dispose();
     }
 
