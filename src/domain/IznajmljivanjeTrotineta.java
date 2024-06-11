@@ -7,22 +7,20 @@ public class IznajmljivanjeTrotineta {
     private Long iznajmljivanjeID;
     private Date datumVreme;
     private double brojSati;
+    private Cenovnik cena = new Cenovnik();
     private double ukupnaCena;
     private Korisnik korisnik;
-    private Administrator administrator;
     private Trotinet trotinet;
 
-    private void izracunajUkupnuCenu(Double brojSati, Cenovnik pocetnaCena, Cenovnik cenaPoSatu){
-        this.ukupnaCena = pocetnaCena.getPocetnaCena() + (brojSati * cenaPoSatu.getCenaPoSatu());
+
+    public IznajmljivanjeTrotineta() {
     }
 
-    public IznajmljivanjeTrotineta(Long iznajmljivanjeID, Date datumVreme, double brojSati, double ukupnaCena, Korisnik korisnik, Administrator administrator, Trotinet trotinet) {
+    public IznajmljivanjeTrotineta(Long iznajmljivanjeID, Date datumVreme, double brojSati, Korisnik korisnik, Trotinet trotinet) {
         this.iznajmljivanjeID = iznajmljivanjeID;
         this.datumVreme = datumVreme;
         this.brojSati = brojSati;
-        this.ukupnaCena = ukupnaCena;
         this.korisnik = korisnik;
-        this.administrator = administrator;
         this.trotinet = trotinet;
     }
 
@@ -50,12 +48,17 @@ public class IznajmljivanjeTrotineta {
         this.brojSati = brojSati;
     }
 
-    public Double getUkupnaCena() {
-        return ukupnaCena;
+    public void setUkupnaCena(double ukupnaCena) {
+        this.ukupnaCena = ukupnaCena;
     }
 
-    public void setUkupnaCena(Double ukupnaCena) {
-        this.ukupnaCena = ukupnaCena;
+    public double getUkupnaCena() {
+        return izracunajUkupnuCenu(this.brojSati, this.cena.getPocetnaCena(this.trotinet), this.cena.getCenaPoSatu(this.trotinet), this.trotinet);
+    }
+
+    private double izracunajUkupnuCenu(Double brojSati, Double pocetnaCena, Double cenaPoSatu, Trotinet t){
+        this.ukupnaCena = cena.getPocetnaCena(t) + (brojSati * cena.getCenaPoSatu(t));
+        return ukupnaCena;
     }
 
     public Korisnik getKorisnik() {
@@ -66,13 +69,13 @@ public class IznajmljivanjeTrotineta {
         this.korisnik = korisnik;
     }
 
-    public Administrator getAdministrator() {
-        return administrator;
-    }
-
-    public void setAdministrator(Administrator administrator) {
-        this.administrator = administrator;
-    }
+//    public Administrator getAdministrator() {
+//        return administrator;
+//    }
+//
+//    public void setAdministrator(Administrator administrator) {
+//        this.administrator = administrator;
+//    }
 
     public Trotinet getTrotinet() {
         return trotinet;
@@ -80,5 +83,17 @@ public class IznajmljivanjeTrotineta {
 
     public void setTrotinet(Trotinet trotinet) {
         this.trotinet = trotinet;
+    }
+
+    @Override
+    public String toString() {
+        return "IznajmljivanjeTrotineta{" +
+                "iznajmljivanjeID=" + iznajmljivanjeID +
+                ", datumVreme=" + datumVreme +
+                ", brojSati=" + brojSati +
+                ", ukupnaCena=" + ukupnaCena +
+                ", korisnik=" + korisnik +
+                ", trotinet=" + trotinet +
+                '}';
     }
 }

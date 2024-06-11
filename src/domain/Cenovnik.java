@@ -5,14 +5,11 @@ import java.util.Date;
 
 public class Cenovnik {
 
-    private Long cenovnikID;
-    private Long trotinetID;
-    private double pocetnaCena;
     private final double cenaPoSatu = 40;
 
-     void vratiCenuPoTipu(Trotinet t) {
+    private double vratiCenuPoTipu(Trotinet t) {
         VrstaTrotinetaEnum vrsta = t.getVrstaTrotineta();
-
+        double pocetnaCena;
         switch (vrsta) {
             case Sharp:
                 pocetnaCena = 80;
@@ -31,15 +28,14 @@ public class Cenovnik {
                 pocetnaCena = 60;
                 break;
         }
-    }
-
-
-
-    public double getPocetnaCena() {
         return pocetnaCena;
     }
 
-    public double getCenaPoSatu() {
+    public double getPocetnaCena(Trotinet t) {
+        return vratiCenuPoTipu(t);
+    }
+
+    public double getCenaPoSatu(Trotinet t) {
         return cenaPoSatu;
     }
 

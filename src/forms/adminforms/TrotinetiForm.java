@@ -1,5 +1,6 @@
 package forms.adminforms;
 
+import domain.VrstaTrotinetaEnum;
 import forms.mainFormAdmin;
 
 import javax.swing.*;
@@ -18,6 +19,16 @@ public class TrotinetiForm extends JDialog {
         setContentPane(contentPane);
         setBounds(500,200,300,200);
         setModal(true);
+
+
+        try {
+            prepareView();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Greska! " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
 
         btnReturn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { onReturn();}
@@ -44,6 +55,12 @@ public class TrotinetiForm extends JDialog {
                 new CreateTrotinetForm().setVisible(true);
             }
         });
+    }
+
+    private void prepareView() {
+        comboBoxTrotineti.removeAllItems();
+        for(VrstaTrotinetaEnum vrstaTrotinetaEnum : VrstaTrotinetaEnum.values())
+            comboBoxTrotineti.addItem(vrstaTrotinetaEnum);
     }
 
     private void onReturn() {

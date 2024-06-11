@@ -4,10 +4,10 @@ import domain.Administrator;
 import domain.IznajmljivanjeTrotineta;
 import domain.Korisnik;
 import domain.Trotinet;
-import repository.AdministratorRepository;
-import repository.IznajmljivanjeRepository;
-import repository.KorisnikRepository;
-import repository.TrotinetRepository;
+import repository.memory.AdministratorRepository;
+import repository.memory.IznajmljivanjeRepository;
+import repository.memory.KorisnikRepository;
+import repository.memory.TrotinetRepository;
 
 import java.util.List;
 

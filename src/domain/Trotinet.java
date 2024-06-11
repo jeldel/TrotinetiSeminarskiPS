@@ -9,7 +9,6 @@ public class Trotinet {
     private String karakteristike;
     private Status status;
     private int ocena;
-    private List<Integer> sveOcene;
 
     public Trotinet(Long trotinetID, VrstaTrotinetaEnum vrstaTrotineta, String karakteristike, Status status) {
         this.trotinetID = trotinetID;

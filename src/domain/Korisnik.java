@@ -95,8 +95,8 @@ public class Korisnik {
                 ", ime='" + ime + '\'' +
                 ", prezime='" + prezime + '\'' +
                 ", email='" + email + '\'' +
-                ", sifra='" + sifra + '\'' +
-                ", grad='" + grad + '\'' +
+                ", username='" + username + '\'' +
+                ", grad=" + grad +
                 ", telefon='" + telefon + '\'' +
                 '}';
     }
