@@ -4,11 +4,12 @@ import domain.Administrator;
 import domain.IznajmljivanjeTrotineta;
 import domain.Korisnik;
 import domain.Trotinet;
+import repository.db.IznajmljivanjeRepository;
+import repository.db.KorisnikRepository;
+import repository.db.TrotinetRepository;
 import repository.memory.AdministratorRepository;
-import repository.memory.IznajmljivanjeRepository;
-import repository.memory.KorisnikRepository;
-import repository.memory.TrotinetRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Controller {
@@ -32,26 +33,47 @@ public class Controller {
         return instance;
     }
 
-    //dodavanje
-    public void addTrotinet(Trotinet t) throws Exception {
-        if(storageTrotinet.getAll().contains(t)){
-            throw new Exception("Trotinet vec postoji!");
+    //add
+    public void addTrotinet(Trotinet trotinet) throws Exception {
+        storageTrotinet.connect();
+        try{
+            storageTrotinet.add(trotinet);
+            storageTrotinet.commit();
+        } catch(SQLException e){
+            storageTrotinet.rollback();
+            e.printStackTrace();
+            throw e;
+        }finally{
+            storageTrotinet.disconnect();
         }
-        storageTrotinet.add(t);
     }
 
     public void addKorisnik(Korisnik korisnik) throws Exception{
-        if(storageKorisnik.getAll().contains(korisnik)){
-            throw new Exception("Korisnik vec postoji!");
+       storageKorisnik.connect();
+        try{
+            storageKorisnik.add(korisnik);
+            storageKorisnik.commit();
+        } catch(SQLException e){
+            storageKorisnik.rollback();
+            e.printStackTrace();
+            throw e;
+        }finally{
+            storageKorisnik.disconnect();
         }
-        storageKorisnik.add(korisnik);
     }
 
-    public void addVoznja(IznajmljivanjeTrotineta it) throws Exception{
-        if(storageIznajmljivanje.getAll().contains(it)){
-            throw new Exception("Voznja vec postoji!");
+    public void addVoznja(IznajmljivanjeTrotineta iznajmljivanjeTrotineta) throws Exception{
+        storageIznajmljivanje.connect();
+        try{
+            storageIznajmljivanje.add(iznajmljivanjeTrotineta);
+            storageIznajmljivanje.commit();
+        } catch(SQLException e){
+            storageIznajmljivanje.rollback();
+            e.printStackTrace();
+            throw e;
+        }finally{
+            storageIznajmljivanje.disconnect();
         }
-        storageIznajmljivanje.add(it);
     }
 
     //getAll
@@ -74,7 +96,6 @@ public class Controller {
                 return administrator;
             }
         }
-
         return null;
     }
 
@@ -86,7 +107,6 @@ public class Controller {
                 return korisnik;
             }
         }
-
         return null;
     }
 

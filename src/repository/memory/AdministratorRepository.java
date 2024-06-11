@@ -1,4 +1,4 @@
-package repository;
+package repository.memory;
 
 import domain.Administrator;
 

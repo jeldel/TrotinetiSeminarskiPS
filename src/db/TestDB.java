@@ -57,7 +57,7 @@ public class TestDB {
 
 //        System.out.println("Kreiran je user sa id " + k2.getkorisnikID());
 
-        System.out.println(db.vratiVoznjePoKriterijumu("markomarkovic"));
+       // System.out.println(db.vratiVoznjePoKriterijumu("markomarkovic"));
         try{
             db.potvrdiTransakciju();
         }catch(Exception e){

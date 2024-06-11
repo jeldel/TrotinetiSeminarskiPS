@@ -88,7 +88,7 @@ public class CreateTrotinetForm extends JDialog {
             Controller.getInstance().addTrotinet(t);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio trotinet!");
             System.out.println(Controller.getInstance().getAllTrotinet());
-            dispose();
+            onReturn();
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti trotinet!" + e.getMessage(), "Greska!", JOptionPane.ERROR_MESSAGE);

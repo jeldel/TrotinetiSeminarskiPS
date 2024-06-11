@@ -88,8 +88,6 @@ public class CreateKorisnikForm extends JDialog {
 
             Korisnik korisnik = new Korisnik(1L, "Pera", "Peric", "peraperic@pp.com",GradEnum.Beograd, "063/1111-111", "peraperic","peraperic");
 
-            JOptionPane.showMessageDialog(this, "Sistem je kreirao korisnika!");
-
             korisnik.setIme(txtName.getText().trim());
             korisnik.setPrezime(txtSurname.getText().trim());
             korisnik.setEmail(txtEmail.getText().trim());
@@ -101,7 +99,7 @@ public class CreateKorisnikForm extends JDialog {
             Controller.getInstance().addKorisnik(korisnik);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio korisnika!");
             System.out.println(Controller.getInstance().getAllKorisnik());
-            dispose();
+            onReturn();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira korisnika! " + e.getMessage(), "Greska!", JOptionPane.ERROR_MESSAGE);
