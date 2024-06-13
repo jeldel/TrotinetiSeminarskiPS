@@ -38,6 +38,13 @@ public class VoznjeForm extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        btnCreate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new CreateVoznjaFormTM().setVisible(true);
+            }
+        });
     }
 
     private void onReturn() {

@@ -56,7 +56,7 @@ public class IznajmljivanjeTrotineta {
         return izracunajUkupnuCenu(this.brojSati, this.cena.getPocetnaCena(this.trotinet), this.cena.getCenaPoSatu(this.trotinet), this.trotinet);
     }
 
-    private double izracunajUkupnuCenu(Double brojSati, Double pocetnaCena, Double cenaPoSatu, Trotinet t){
+    private double izracunajUkupnuCenu(Double brojSati, Double pocetnaCena, Double cenaPoSatu, Trotinet t) {
         this.ukupnaCena = cena.getPocetnaCena(t) + (brojSati * cena.getCenaPoSatu(t));
         return ukupnaCena;
     }

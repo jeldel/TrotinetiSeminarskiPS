@@ -174,4 +174,32 @@ public class IznajmljivanjeRepository extends DBRepository{
         }
     }
 
+    public void addAll(List<IznajmljivanjeTrotineta> voznje){
+
+        try {
+            String query = "INSERT INTO iznajmljivanjeTrotineta (datumVreme, brojSati, ukupnaCena, korisnikID, trotinetID)  VALUES (?,?,?,?,?)";
+            System.out.println(query);
+            connection = DBConnectionFactory.getInstance().getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            for(IznajmljivanjeTrotineta iznajmljivanjeTrotineta : voznje) {
+                Date sqlDate = new Date(iznajmljivanjeTrotineta.getDatumVreme().getTime());
+                statement.setDate(1, sqlDate);
+                statement.setDouble(2, iznajmljivanjeTrotineta.getBrojSati());
+                statement.setDouble(3, iznajmljivanjeTrotineta.getUkupnaCena());
+                statement.setLong(4, iznajmljivanjeTrotineta.getKorisnik().getkorisnikID());
+                statement.setLong(5, iznajmljivanjeTrotineta.getTrotinet().getTrotinetID());
+
+                statement.executeUpdate();
+                System.out.println("Uspesno kreirana voznja");
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Neuspesno kreirana voznja");
+            throw new RuntimeException(e);
+        }
+    }
+
 }

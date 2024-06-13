@@ -37,11 +37,9 @@ public class CreateKorisnikForm extends JDialog {
 
         try {
             prepareView();
-
         }catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Greska! " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
         }
 
         buttonOK.addActionListener(new ActionListener() {

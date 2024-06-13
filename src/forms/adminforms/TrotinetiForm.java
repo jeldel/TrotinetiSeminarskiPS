@@ -13,7 +13,7 @@ public class TrotinetiForm extends JDialog {
     private JButton btnCreate;
     private JLabel lblSearch;
     private JComboBox comboBoxTrotineti;
-    private JButton btnSearch;
+    private JButton btnAllScooters;
 
     public TrotinetiForm() {
         setContentPane(contentPane);
@@ -61,6 +61,7 @@ public class TrotinetiForm extends JDialog {
         comboBoxTrotineti.removeAllItems();
         for(VrstaTrotinetaEnum vrstaTrotinetaEnum : VrstaTrotinetaEnum.values())
             comboBoxTrotineti.addItem(vrstaTrotinetaEnum);
+        comboBoxTrotineti.addItem("Svi trotineti");
     }
 
     private void onReturn() {

@@ -11,7 +11,8 @@ import java.util.List;
 public class TrotinetRepository extends DBRepository {
     Connection connection;
 
-    public TrotinetRepository() {}
+    public TrotinetRepository() {
+    }
 
     public List<Trotinet> getAll() {
         try {
@@ -43,7 +44,7 @@ public class TrotinetRepository extends DBRepository {
     public List<Trotinet> getAllByCriteria(VrstaTrotinetaEnum vrstaTrotinetaEnum) {
         try {
             List<Trotinet> trotineti = new ArrayList<>();
-            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike, status, ocena FROM trotinet WHERE vrstaTrotineta = '" + vrstaTrotinetaEnum +"'";
+            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike, status, ocena FROM trotinet WHERE vrstaTrotineta = '" + vrstaTrotinetaEnum + "'";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
             Statement statement = connection.createStatement();
@@ -68,6 +69,31 @@ public class TrotinetRepository extends DBRepository {
 
     }
 
+    public Trotinet getById(Long id) {
+        try {
+            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike, status, ocena FROM trotinet WHERE trotinetID = " + id;
+            System.out.println(query);
+            connection = DBConnectionFactory.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            Trotinet t = new Trotinet();
+            while (rs.next()) {
+                t.setTrotinetID(rs.getLong("trotinetID"));
+                t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
+                t.setKarakteristike(rs.getString("karakteristike"));
+                t.setStatus(Status.valueOf(rs.getString("status")));
+                t.setOcena(rs.getInt("ocena"));
+            }
+            rs.close();
+            statement.close();
+            System.out.println("Uspesno ucitana lista trotineta po unesenom kriterijumu");
+            return t;
+        } catch (SQLException e) {
+            System.out.println("Neuspesno ucitana lista trotineta po unesenom kriterijumu");
+            throw new RuntimeException(e);
+        }
+    }
+
     public void add(Trotinet trotinet) {
         try {
             String query = "INSERT INTO trotinet (vrstaTrotineta, karakteristike, status) VALUES (?,?,?)";
@@ -75,9 +101,9 @@ public class TrotinetRepository extends DBRepository {
             connection = DBConnectionFactory.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, String.valueOf(trotinet.getVrstaTrotineta()));
+            statement.setString(1, trotinet.getVrstaTrotineta().name());
             statement.setString(2, trotinet.getKarakteristike());
-            statement.setString(3, String.valueOf(trotinet.getStatus()));
+            statement.setString(3, trotinet.getStatus().name());
 
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
@@ -93,14 +119,14 @@ public class TrotinetRepository extends DBRepository {
         }
     }
 
-    public void delete(VrstaTrotinetaEnum vrstaTrotinetaEnum){
+    public void delete(VrstaTrotinetaEnum vrstaTrotinetaEnum) {
         try {
             String query = "DELETE FROM trotinet WHERE vrstaTrotineta = ? ";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, String.valueOf(vrstaTrotinetaEnum));
+            statement.setString(1, vrstaTrotinetaEnum.name());
             statement.executeUpdate();
             statement.close();
             System.out.println("Uspesno brisanje trotineta");

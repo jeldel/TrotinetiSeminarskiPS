@@ -12,7 +12,7 @@ public class KorisniciForm extends JDialog {
     private JButton btnCreate;
     private JLabel lblSearch;
     private JTextField txtSearch;
-    private JButton btnSearch;
+    private JButton btnAllUsers;
 
     public KorisniciForm() {
         setContentPane(contentPane);

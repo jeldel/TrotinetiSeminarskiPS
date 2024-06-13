@@ -71,12 +71,12 @@
             </constraints>
             <properties/>
           </component>
-          <component id="83126" class="javax.swing.JButton" binding="btnSearch">
+          <component id="83126" class="javax.swing.JButton" binding="btnAllScooters">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Pretrazi trotinete"/>
+              <text value="Prikazi"/>
             </properties>
           </component>
         </children>

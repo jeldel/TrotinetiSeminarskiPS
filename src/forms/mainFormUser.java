@@ -1,5 +1,7 @@
 package forms;
 
+import domain.VrstaTrotinetaEnum;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -9,13 +11,20 @@ public class mainFormUser extends JDialog {
     private JLabel lblWelcome;
     private JButton btnSearchTrotinet;
     private JLabel lblSearch;
-    private JComboBox comboBoxSearch;
+    private JComboBox cmbTrotinet;
 
     public mainFormUser() {
         setContentPane(contentPane);
         setTitle("Korisnicka forma");
         setModal(true);
         setBounds(500,200,400,200);
+
+        try {
+            prepareView();
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Greska! " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -37,6 +46,15 @@ public class mainFormUser extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    }
+
+    private void prepareView() {
+        cmbTrotinet.removeAllItems();
+
+        for(VrstaTrotinetaEnum vrsta: VrstaTrotinetaEnum.values()) {
+            cmbTrotinet.addItem(vrsta);
+        }
+        cmbTrotinet.addItem("Svi trotineti");
     }
 
     private void onCancel() {

@@ -87,6 +87,8 @@ public class Controller {
         return storageIznajmljivanje.getAll();
     }
 
+
+
     //login
     public Administrator loginAdmin(String username, String password){
         List<Administrator> administratori  = storageAdmin.getAll();
@@ -108,6 +110,25 @@ public class Controller {
             }
         }
         return null;
+    }
+
+    public void addAllVoznje(List<IznajmljivanjeTrotineta> voznje) throws SQLException{
+        storageIznajmljivanje.connect();
+        try{
+            storageIznajmljivanje.addAll(voznje);
+            storageIznajmljivanje.commit();
+        } catch(SQLException e){
+            storageIznajmljivanje.rollback();
+            e.printStackTrace();
+            throw e;
+        }finally{
+            storageIznajmljivanje.disconnect();
+        }
+    }
+
+    //getByID
+    public Trotinet getTrotinetById(Long id) {
+        return storageTrotinet.getById(id);
     }
 
 }

@@ -28,13 +28,10 @@ public class CreateTrotinetForm extends JDialog {
         setTitle("Kreiranje trotineta");
 
         try {
-
             prepareView();
-
         }catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Greska! " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
         }
 
         buttonOK.addActionListener(new ActionListener() {
