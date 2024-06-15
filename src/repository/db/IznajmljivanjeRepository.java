@@ -23,8 +23,6 @@ public class IznajmljivanjeRepository extends DBRepository{
                     " t.trotinetID," +
                     " t.vrstaTrotineta," +
                     " t.karakteristike," +
-                    " t.status, " +
-                    "t.ocena," +
                     " k.korisnikID," +
                     " k.ime," +
                     " k.prezime," +
@@ -51,8 +49,6 @@ public class IznajmljivanjeRepository extends DBRepository{
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
                 t.setKarakteristike(rs.getString("t.karakteristike"));
-                t.setStatus(Status.valueOf(rs.getString("t.status")));
-                t.setOcena(rs.getInt("t.ocena"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();
@@ -90,8 +86,6 @@ public class IznajmljivanjeRepository extends DBRepository{
                     " t.trotinetID," +
                     " t.vrstaTrotineta," +
                     " t.karakteristike," +
-                    " t.status, " +
-                    "t.ocena," +
                     " k.korisnikID," +
                     " k.ime," +
                     " k.prezime," +
@@ -118,8 +112,6 @@ public class IznajmljivanjeRepository extends DBRepository{
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
                 t.setKarakteristike(rs.getString("t.karakteristike"));
-                t.setStatus(Status.valueOf(rs.getString("t.status")));
-                t.setOcena(rs.getInt("t.ocena"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();

@@ -22,7 +22,7 @@ public class loginForm extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         setTitle("Login forma");
-        setBounds(500,200,350,200);
+        setBounds(500, 200, 350, 200);
         getRootPane().setDefaultButton(btnLogin);
 
 
@@ -79,13 +79,13 @@ public class loginForm extends JDialog {
 
     private void validateForm() throws Exception {
         String errorMessage = "";
-        if (txtUsername.getText().isEmpty()){
-            errorMessage+= "Korisnicko ime ne sme biti prazno!";
+        if (txtUsername.getText().isEmpty()) {
+            errorMessage += "Korisnicko ime ne sme biti prazno!";
         }
         if (String.valueOf(txtPassword.getPassword()).isEmpty()) {
-            errorMessage+= "Sifra ne sme biti prazna!";
+            errorMessage += "Sifra ne sme biti prazna!";
         }
-        if (!errorMessage.isEmpty()){
+        if (!errorMessage.isEmpty()) {
             throw new Exception(errorMessage);
         }
     }

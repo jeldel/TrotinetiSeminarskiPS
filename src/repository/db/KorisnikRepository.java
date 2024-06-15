@@ -3,6 +3,7 @@ package repository.db;
 import domain.GradEnum;
 import domain.Korisnik;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class KorisnikRepository extends DBRepository{
 
     }
 
-    public List<Korisnik> getAllByCriteria(String username) {
+    public List<Korisnik> getAllByUsername(String username) {
         try {
             List<Korisnik> korisnici = new ArrayList<>();
             String query = "SELECT korisnikID, ime, prezime, email, grad, telefon, username, sifra FROM korisnik WHERE username = '" + username +"'";

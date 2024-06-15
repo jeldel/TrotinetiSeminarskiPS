@@ -1,20 +1,15 @@
 package domain;
 
-import java.util.List;
-
 public class Trotinet {
 
     private Long trotinetID;
     private VrstaTrotinetaEnum vrstaTrotineta;
     private String karakteristike;
-    private Status status;
-    private int ocena;
 
-    public Trotinet(Long trotinetID, VrstaTrotinetaEnum vrstaTrotineta, String karakteristike, Status status) {
+    public Trotinet(Long trotinetID, VrstaTrotinetaEnum vrstaTrotineta, String karakteristike) {
         this.trotinetID = trotinetID;
         this.vrstaTrotineta = vrstaTrotineta;
         this.karakteristike = karakteristike;
-        this.status = status;
     }
 
     public Long getTrotinetID() {
@@ -44,29 +39,13 @@ public class Trotinet {
         this.karakteristike = karakteristike;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public int getOcena() {
-        return ocena;
-    }
-
-    public void setOcena(int ocena) {
-        this.ocena = ocena;
-    }
 
     @Override
     public String toString() {
         return "Trotinet{" +
                 "trotinetID=" + trotinetID +
                 ", vrstaTrotineta=" + vrstaTrotineta +
-                ", karakteristike='" + karakteristike + '\'' +
-                ", status=" + status +
+                ", karakteristike='" + karakteristike +
                 '}';
     }
 }

@@ -1,9 +1,8 @@
 package forms;
 
-import domain.Trotinet;
-import forms.adminforms.KorisniciForm;
-import forms.adminforms.TrotinetiForm;
-import forms.adminforms.VoznjeForm;
+import forms.korisnikForms.KorisniciForm;
+import forms.trotinetForms.TrotinetiForm;
+import forms.voznjeForms.VoznjeForm;
 
 import javax.swing.*;
 import java.awt.event.*;

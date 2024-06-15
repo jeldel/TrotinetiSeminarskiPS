@@ -65,12 +65,11 @@ public class DBBroker {
     //CRUD trotinet
     public void kreirajTrotinet(Trotinet t) {
         try {
-            String query = "INSERT INTO trotinet (vrstaTrotineta, karakteristike, status) VALUES (?,?,?)";
+            String query = "INSERT INTO trotinet (vrstaTrotineta, karakteristike) VALUES (?,?)";
             System.out.println(query);
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, String.valueOf(t.getVrstaTrotineta()));
             statement.setString(2, t.getKarakteristike());
-            statement.setString(3, String.valueOf(t.getStatus()));
 
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
@@ -89,7 +88,7 @@ public class DBBroker {
     public List<Trotinet> vratiSveTrotinete() {
         try {
             List<Trotinet> trotineti = new ArrayList<>();
-            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike, status, ocena FROM trotinet";
+            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike FROM trotinet";
             System.out.println(query);
 
             Statement statement = connection.createStatement();
@@ -99,8 +98,6 @@ public class DBBroker {
                 t.setTrotinetID(rs.getLong("trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
                 t.setKarakteristike(rs.getString("karakteristike"));
-                t.setStatus(Status.valueOf(rs.getString("status")));
-                t.setOcena(rs.getInt("ocena"));
                 trotineti.add(t);
             }
             rs.close();
@@ -117,7 +114,7 @@ public class DBBroker {
     public List<Trotinet> vratiTrotinetePoKriterijumu(VrstaTrotinetaEnum vrstaTrotinetaEnum) {
         try {
             List<Trotinet> trotineti = new ArrayList<>();
-            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike, status, ocena FROM trotinet WHERE vrstaTrotineta = '" + vrstaTrotinetaEnum +"'";
+            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike FROM trotinet WHERE vrstaTrotineta = '" + vrstaTrotinetaEnum +"'";
             System.out.println(query);
 
             Statement statement = connection.createStatement();
@@ -127,8 +124,6 @@ public class DBBroker {
                 t.setTrotinetID(rs.getLong("trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
                 t.setKarakteristike(rs.getString("karakteristike"));
-                t.setStatus(Status.valueOf(rs.getString("status")));
-                t.setOcena(rs.getInt("ocena"));
                 trotineti.add(t);
             }
             rs.close();
@@ -306,8 +301,6 @@ public class DBBroker {
                     " t.trotinetID," +
                     " t.vrstaTrotineta," +
                     " t.karakteristike," +
-                    " t.status, " +
-                    "t.ocena," +
                     " k.korisnikID," +
                     " k.ime," +
                     " k.prezime," +
@@ -334,8 +327,6 @@ public class DBBroker {
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
                 t.setKarakteristike(rs.getString("t.karakteristike"));
-                t.setStatus(Status.valueOf(rs.getString("t.status")));
-                t.setOcena(rs.getInt("t.ocena"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();
@@ -373,8 +364,6 @@ public class DBBroker {
                     " t.trotinetID," +
                     " t.vrstaTrotineta," +
                     " t.karakteristike," +
-                    " t.status, " +
-                    "t.ocena," +
                     " k.korisnikID," +
                     " k.ime," +
                     " k.prezime," +
@@ -401,8 +390,6 @@ public class DBBroker {
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
                 t.setKarakteristike(rs.getString("t.karakteristike"));
-                t.setStatus(Status.valueOf(rs.getString("t.status")));
-                t.setOcena(rs.getInt("t.ocena"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();

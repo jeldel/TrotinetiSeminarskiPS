@@ -115,5 +115,4 @@ public class TableModelVoznja extends AbstractTableModel {
         return voznje;
     }
 
-
 }

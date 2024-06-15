@@ -4,10 +4,11 @@ import domain.Administrator;
 import domain.IznajmljivanjeTrotineta;
 import domain.Korisnik;
 import domain.Trotinet;
+import domain.VrstaTrotinetaEnum;
 import repository.db.IznajmljivanjeRepository;
 import repository.db.KorisnikRepository;
 import repository.db.TrotinetRepository;
-import repository.memory.AdministratorRepository;
+import repository.db.AdministratorRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -88,8 +89,9 @@ public class Controller {
     }
 
 
-
     //login
+
+
     public Administrator loginAdmin(String username, String password){
         List<Administrator> administratori  = storageAdmin.getAll();
 
@@ -131,4 +133,43 @@ public class Controller {
         return storageTrotinet.getById(id);
     }
 
+    public List<IznajmljivanjeTrotineta> getAllByCriteria(String username){
+        return storageIznajmljivanje.getAllByCriteria(username);
+    }
+
+    public List<Trotinet> getAllByVrsta(VrstaTrotinetaEnum vrstaTrotinetaEnum) {
+        return storageTrotinet.getAllByVrsta(vrstaTrotinetaEnum);
+    }
+
+    public void deleteTrotinet(Long trotinetID) throws SQLException {
+        storageTrotinet.connect();
+        try{
+            storageTrotinet.delete(trotinetID);
+            storageTrotinet.commit();
+        } catch(SQLException e){
+            storageTrotinet.rollback();
+            e.printStackTrace();
+            throw e;
+        }finally{
+            storageTrotinet.disconnect();
+        }
+    }
+
+    public List<Korisnik> getAllByUsername(String username){
+        return storageKorisnik.getAllByUsername(username);
+    }
+
+    public void deleteKorisnik(String username) throws SQLException {
+        storageKorisnik.connect();
+        try{
+            storageKorisnik.delete(username);
+            storageKorisnik.commit();
+        } catch(SQLException e){
+            storageKorisnik.rollback();
+            e.printStackTrace();
+            throw e;
+        }finally{
+            storageKorisnik.disconnect();
+        }
+    }
 }
