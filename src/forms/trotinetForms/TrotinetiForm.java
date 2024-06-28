@@ -1,6 +1,5 @@
 package forms.trotinetForms;
 
-import domain.VrstaTrotinetaEnum;
 import forms.mainFormAdmin;
 
 import javax.swing.*;
@@ -42,7 +41,6 @@ public class TrotinetiForm extends JDialog {
         btnCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new CreateTrotinetForm().setVisible(true);
             }
         });

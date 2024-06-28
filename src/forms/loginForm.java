@@ -1,8 +1,8 @@
 package forms;
 
 import controller.Controller;
-import domain.Administrator;
 import domain.Korisnik;
+import domain.TipKorisnika;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -31,21 +31,16 @@ public class loginForm extends JDialog {
                 try {
                     validateForm();
 
-                    Korisnik korisnik = Controller.getInstance().loginKorisnik(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
+                    Korisnik korisnik = Controller.getInstance().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
 
-                    if(korisnik != null) {
+                    if (korisnik.getTipKorisnika() == TipKorisnika.Korisnik) {
                         dispose();
                         new mainFormUser().setVisible(true);
-                    }
-                    else{
-                        Administrator admin = Controller.getInstance().loginAdmin(txtUsername.getText(), String.valueOf(txtPassword.getPassword()));
-                        if (admin != null){
-                            dispose();
-                            new mainFormAdmin().setVisible(true);
-                        }
-                        else{
-                            throw new Exception("Nepoznat korisnik!");
-                        }
+                    } else if (korisnik.getTipKorisnika() == TipKorisnika.Administrator) {
+                        dispose();
+                        new mainFormAdmin().setVisible(true);
+                    } else {
+                        throw new Exception("Nepoznat korisnik!");
                     }
 
 

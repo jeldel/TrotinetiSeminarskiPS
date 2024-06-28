@@ -85,7 +85,7 @@ public class KorisnikGeneralForm extends JDialog {
                     if(selectedRow == -1){
                         JOptionPane.showMessageDialog(btnDelete, "Niste izabrali korisnika", "Error", JOptionPane.ERROR_MESSAGE);
                     }else {
-                        String username = (String) tblKorisnik.getValueAt(selectedRow, 6);
+                        String username = (String) tblKorisnik.getValueAt(selectedRow, 7);
                         Controller.getInstance().deleteKorisnik(username);
                         JOptionPane.showMessageDialog(btnDelete, "Uspesno brisanje korisnika", "Success", JOptionPane.INFORMATION_MESSAGE);
                         prepareView();

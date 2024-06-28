@@ -4,12 +4,12 @@ public class Trotinet {
 
     private Long trotinetID;
     private VrstaTrotinetaEnum vrstaTrotineta;
-    private String karakteristike;
+    private String model;
 
-    public Trotinet(Long trotinetID, VrstaTrotinetaEnum vrstaTrotineta, String karakteristike) {
+    public Trotinet(Long trotinetID, VrstaTrotinetaEnum vrstaTrotineta, String model) {
         this.trotinetID = trotinetID;
         this.vrstaTrotineta = vrstaTrotineta;
-        this.karakteristike = karakteristike;
+        this.model = model;
     }
 
     public Long getTrotinetID() {
@@ -31,12 +31,12 @@ public class Trotinet {
         this.vrstaTrotineta = vrstaTrotineta;
     }
 
-    public String getKarakteristike() {
-        return karakteristike;
+    public String getModel() {
+        return model;
     }
 
-    public void setKarakteristike(String karakteristike) {
-        this.karakteristike = karakteristike;
+    public void setModel(String model) {
+        this.model = model;
     }
 
 
@@ -45,7 +45,7 @@ public class Trotinet {
         return "Trotinet{" +
                 "trotinetID=" + trotinetID +
                 ", vrstaTrotineta=" + vrstaTrotineta +
-                ", karakteristike='" + karakteristike +
+                ", model='" + model +
                 '}';
     }
 }

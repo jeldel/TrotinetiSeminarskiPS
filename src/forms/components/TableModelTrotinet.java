@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TableModelTrotinet extends AbstractTableModel {
     private List<Trotinet> trotineti;
-    private String[] columnNames = new String[]{"TrotinetID", "Vrsta trotineta", "Karakteristike"};
+    private String[] columnNames = new String[]{"TrotinetID", "Vrsta trotineta", "Model"};
     private Class[] columnClass = new Class[]{Long.class, VrstaTrotinetaEnum.class, String.class};
 
     public TableModelTrotinet(List<Trotinet> trotineti) {
@@ -61,7 +61,7 @@ public class TableModelTrotinet extends AbstractTableModel {
             case 1:
                 return trotinet.getVrstaTrotineta();
             case 2:
-                return trotinet.getKarakteristike();
+                return trotinet.getModel();
             default:
                 return "Nije dostupno";
         }
@@ -78,7 +78,7 @@ public class TableModelTrotinet extends AbstractTableModel {
                 trotinet.setVrstaTrotineta((VrstaTrotinetaEnum) aValue);
                 break;
             case 2:
-                trotinet.setKarakteristike((String) aValue);
+                trotinet.setModel((String) aValue);
                 break;
         }
     }

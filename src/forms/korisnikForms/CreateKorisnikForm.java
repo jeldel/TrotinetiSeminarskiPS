@@ -3,11 +3,11 @@ package forms.korisnikForms;
 import controller.Controller;
 import domain.GradEnum;
 import domain.Korisnik;
+import domain.TipKorisnika;
 import forms.mainFormAdmin;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.List;
 
 public class CreateKorisnikForm extends JDialog {
     private JPanel contentPane;
@@ -27,6 +27,10 @@ public class CreateKorisnikForm extends JDialog {
     private JTextField txtUsername;
     private JTextField txtPhone;
     private JPasswordField passwordField1;
+    private JLabel lblBrLicneKarte;
+    private JTextField txtBrLicneKarte;
+    private JLabel lblTipKorisnika;
+    private JComboBox cmbTipKorisnika;
 
 
     public CreateKorisnikForm() {
@@ -79,14 +83,16 @@ public class CreateKorisnikForm extends JDialog {
     private void prepareView() throws Exception {
         comboBoxCity.removeAllItems();
         for (GradEnum grad : GradEnum.values()) comboBoxCity.addItem(grad);
+        cmbTipKorisnika.removeAllItems();
+        for(TipKorisnika tipKorisnika : TipKorisnika.values()) cmbTipKorisnika.addItem(tipKorisnika);
     }
 
     private void onOK() {
         try {
             validation();
 
-            Korisnik korisnik = new Korisnik(1L, "Pera", "Peric", "peraperic@pp.com",GradEnum.Beograd, "063/1111-111", "peraperic","peraperic");
-
+            Korisnik korisnik = new Korisnik();
+            korisnik.setBrojLicneKarte(Long.valueOf(txtBrLicneKarte.getText().trim()));
             korisnik.setIme(txtName.getText().trim());
             korisnik.setPrezime(txtSurname.getText().trim());
             korisnik.setEmail(txtEmail.getText().trim());
@@ -94,18 +100,21 @@ public class CreateKorisnikForm extends JDialog {
             korisnik.setTelefon(txtPhone.getText().trim());
             korisnik.setUsername(txtUsername.getText().trim());
             korisnik.setSifra(String.valueOf(passwordField1.getPassword()));
-
+            korisnik.setTipKorisnika((TipKorisnika) cmbTipKorisnika.getSelectedItem());
             Controller.getInstance().addKorisnik(korisnik);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio korisnika!");
-            System.out.println(Controller.getInstance().getAllKorisnik());
+            System.out.println(Controller.getInstance().getAllOsoba());
             onReturn();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira korisnika! Korisnik sa datim username-om vec postoji!", "Greska!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira korisnika! " + e.getMessage(), "Greska!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void validation() throws Exception {
+        if(txtBrLicneKarte.getText().length() != 9){
+            throw new RuntimeException("Broj licne karte mora da ima tacno devet brojeva");
+        }
         if(txtName.getText().length() < 2){
             throw new RuntimeException("Ime mora biti duze od jednog karaktera!");
         }

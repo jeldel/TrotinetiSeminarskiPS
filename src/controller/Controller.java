@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Administrator;
+import domain.Osoba;
 import domain.IznajmljivanjeTrotineta;
 import domain.Korisnik;
 import domain.Trotinet;
@@ -8,20 +8,23 @@ import domain.VrstaTrotinetaEnum;
 import repository.db.IznajmljivanjeRepository;
 import repository.db.KorisnikRepository;
 import repository.db.TrotinetRepository;
-import repository.db.AdministratorRepository;
+import repository.db.OsobaRepository;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class Controller {
     private static Controller instance;
-    private final KorisnikRepository storageKorisnik;
+    private final OsobaRepository storageOsoba;
     private final TrotinetRepository storageTrotinet;
-    private final AdministratorRepository storageAdmin;
+    private final KorisnikRepository storageKorisnik;
     private final IznajmljivanjeRepository storageIznajmljivanje;
+    private Korisnik ulogovanKorisnik;
+    private Osoba izabranaOsoba;
+    private Trotinet izabraniTrotinet;
 
     private Controller(){
-        storageAdmin = new AdministratorRepository();
+        storageOsoba = new OsobaRepository();
         storageKorisnik = new KorisnikRepository();
         storageTrotinet = new TrotinetRepository();
         storageIznajmljivanje = new IznajmljivanjeRepository();
@@ -49,8 +52,22 @@ public class Controller {
         }
     }
 
+    public void addOsoba(Osoba osoba) throws Exception{
+       storageOsoba.connect();
+        try{
+            storageOsoba.add(osoba);
+            storageOsoba.commit();
+        } catch(SQLException e){
+            storageOsoba.rollback();
+            e.printStackTrace();
+            throw e;
+        }finally{
+            storageOsoba.disconnect();
+        }
+    }
+
     public void addKorisnik(Korisnik korisnik) throws Exception{
-       storageKorisnik.connect();
+        storageKorisnik.connect();
         try{
             storageKorisnik.add(korisnik);
             storageKorisnik.commit();
@@ -81,37 +98,29 @@ public class Controller {
     public List<Trotinet> getAllTrotinet(){
         return storageTrotinet.getAll();
     }
-    public List<Korisnik> getAllKorisnik(){
-        return storageKorisnik.getAll();
+    public List<Osoba> getAllOsoba(){
+        return storageOsoba.getAll();
     }
     public List<IznajmljivanjeTrotineta> getAllVoznje(){
         return storageIznajmljivanje.getAll();
     }
-
-
+    public List<Korisnik> getAllKorisnik() {return storageKorisnik.getAll(); }
     //login
 
+    public Korisnik login(String username, String password) {
+        List<Korisnik> korisnici = storageKorisnik.getAll();
 
-    public Administrator loginAdmin(String username, String password){
-        List<Administrator> administratori  = storageAdmin.getAll();
-
-        for (Administrator administrator : administratori){
-            if(administrator.getUsername().equals(username) && administrator.getPassword().equals(password)){
-                return administrator;
+        for (Korisnik korisnik : korisnici){
+            if(korisnik.getUsername().equals(username) && korisnik.getSifra().equals(password)){
+                ulogovanKorisnik = korisnik;
+                return korisnik;
             }
         }
         return null;
     }
 
-    public Korisnik loginKorisnik(String username, String password) {
-        List<Korisnik> korisnici = storageKorisnik.getAll();
-
-        for (Korisnik korisnik : korisnici){
-            if(korisnik.getUsername().equals(username) && korisnik.getSifra().equals(password)){
-                return korisnik;
-            }
-        }
-        return null;
+    public Korisnik getUlogovanKorisnik(){
+        return ulogovanKorisnik;
     }
 
     public void addAllVoznje(List<IznajmljivanjeTrotineta> voznje) throws SQLException{
@@ -171,5 +180,25 @@ public class Controller {
         }finally{
             storageKorisnik.disconnect();
         }
+    }
+
+    public List<Osoba> getByBrojLK(Long brojLicneKarte){
+        return storageOsoba.getByBrojLK(brojLicneKarte);
+    }
+
+    public void setIzabranaOsoba(Osoba izabranaOsoba) {
+        this.izabranaOsoba = izabranaOsoba;
+    }
+
+    public Osoba getIzabranaOsoba(){
+        return izabranaOsoba;
+    }
+
+    public Trotinet getIzabraniTrotinet() {
+        return izabraniTrotinet;
+    }
+
+    public void setIzabraniTrotinet(Trotinet izabraniTrotinet) {
+        this.izabraniTrotinet = izabraniTrotinet;
     }
 }

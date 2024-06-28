@@ -7,7 +7,7 @@ import javax.swing.table.TableCellEditor;
 import java.awt.*;
 import java.util.Date;
 
-public class DatePicker extends AbstractCellEditor implements TableCellEditor {
+public class DatePicker extends AbstractCellEditor implements TableCellEditor{
     private JDateChooser dateChooser = new JDateChooser();
 
     @Override

@@ -9,7 +9,6 @@ import forms.components.TableModelTrotinet;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.event.*;
-import java.sql.SQLException;
 import java.util.List;
 
 public class TrotinetGeneralFormTM extends JDialog {

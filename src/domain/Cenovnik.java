@@ -1,11 +1,6 @@
 package domain;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 public class Cenovnik {
-
-    private final double cenaPoSatu = 40;
 
     private double vratiCenuPoTipu(Trotinet t) {
         VrstaTrotinetaEnum vrsta = t.getVrstaTrotineta();
@@ -35,7 +30,8 @@ public class Cenovnik {
         return vratiCenuPoTipu(t);
     }
 
-    public double getCenaPoSatu(Trotinet t) {
+    public double getCenaPoSatu() {
+        double cenaPoSatu = 40;
         return cenaPoSatu;
     }
 

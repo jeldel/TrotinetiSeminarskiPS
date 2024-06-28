@@ -48,7 +48,7 @@ public class IznajmljivanjeRepository extends DBRepository{
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("t.karakteristike"));
+                t.setModel(rs.getString("t.karakteristike"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();
@@ -111,7 +111,7 @@ public class IznajmljivanjeRepository extends DBRepository{
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("t.karakteristike"));
+                t.setModel(rs.getString("t.karakteristike"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();

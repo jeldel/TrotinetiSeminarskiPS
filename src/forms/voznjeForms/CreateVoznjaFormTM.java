@@ -87,6 +87,7 @@ public class CreateVoznjaFormTM extends JDialog {
                         Controller.getInstance().addAllVoznje(voznje);
                         JOptionPane.showMessageDialog(btnSave, "Uspesno ste sacuvali voznje", "Success", JOptionPane.INFORMATION_MESSAGE);
                         dispose();
+                        new VoznjeForm().setVisible(true);
                     }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(btnSave, "Greska pri cuvanju liste voznji", "Error", JOptionPane.ERROR_MESSAGE);

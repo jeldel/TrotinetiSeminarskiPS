@@ -2,14 +2,15 @@ package forms.components;
 
 import domain.GradEnum;
 import domain.Korisnik;
+import domain.TipKorisnika;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class TableModelKorisnik extends AbstractTableModel {
     private List<Korisnik> korisnici;
-    private String[] columnNames = new String[]{"korisnikID", "ime", "prezime", "email", "grad", "telefon", "username","sifra"};
-    private Class[] columnClass = new Class[]{Long.class, String.class,String.class, String.class, GradEnum.class, String.class, String.class, String.class};
+    private String[] columnNames = new String[]{"korisnikID", "brojLicneKarte", "ime", "prezime", "email", "grad", "telefon", "username","sifra" , "tipKorisnika"};
+    private Class[] columnClass = new Class[]{Long.class, Long.class, String.class,String.class, String.class, GradEnum.class, String.class, String.class, String.class, TipKorisnika.class};
 
     public TableModelKorisnik(List<Korisnik> korisnici) {
         this.korisnici = korisnici;
@@ -61,19 +62,23 @@ public class TableModelKorisnik extends AbstractTableModel {
             case 0:
                 return korisnik.getkorisnikID();
             case 1:
-                return korisnik.getIme();
+                return korisnik.getBrojLicneKarte();
             case 2:
-                return korisnik.getPrezime();
+                return korisnik.getIme();
             case 3:
-                return korisnik.getEmail();
+                return korisnik.getPrezime();
             case 4:
-                return korisnik.getGrad();
+                return korisnik.getEmail();
             case 5:
-                return korisnik.getTelefon();
+                return korisnik.getGrad();
             case 6:
-                return korisnik.getUsername();
+                return korisnik.getTelefon();
             case 7:
+                return korisnik.getUsername();
+            case 8:
                 return korisnik.getSifra();
+            case 9:
+                return korisnik.getTipKorisnika();
             default:
                 return "Nije dostupno";
         }
@@ -87,25 +92,31 @@ public class TableModelKorisnik extends AbstractTableModel {
                 korisnik.setkorisnikID((Long) aValue);
                 break;
             case 1:
-                korisnik.setIme((String) aValue);
+                korisnik.setBrojLicneKarte((Long)aValue);
                 break;
             case 2:
-                korisnik.setPrezime((String) aValue);
+                korisnik.setIme((String) aValue);
                 break;
             case 3:
-                korisnik.setEmail((String) aValue);
+                korisnik.setPrezime((String) aValue);
                 break;
             case 4:
-                korisnik.setGrad((GradEnum) aValue);
+                korisnik.setEmail((String) aValue);
                 break;
             case 5:
-                korisnik.setTelefon((String)aValue);
+                korisnik.setGrad((GradEnum) aValue);
                 break;
             case 6:
-                korisnik.setUsername((String)aValue);
+                korisnik.setTelefon((String)aValue);
                 break;
             case 7:
+                korisnik.setUsername((String)aValue);
+                break;
+            case 8:
                 korisnik.setSifra((String) aValue);
+                break;
+            case 9:
+                korisnik.setTipKorisnika((TipKorisnika) aValue);
                 break;
         }
     }

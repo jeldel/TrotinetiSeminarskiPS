@@ -69,7 +69,7 @@ public class DBBroker {
             System.out.println(query);
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, String.valueOf(t.getVrstaTrotineta()));
-            statement.setString(2, t.getKarakteristike());
+            statement.setString(2, t.getModel());
 
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
@@ -97,7 +97,7 @@ public class DBBroker {
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("karakteristike"));
+                t.setModel(rs.getString("karakteristike"));
                 trotineti.add(t);
             }
             rs.close();
@@ -123,7 +123,7 @@ public class DBBroker {
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("karakteristike"));
+                t.setModel(rs.getString("karakteristike"));
                 trotineti.add(t);
             }
             rs.close();
@@ -186,7 +186,7 @@ public class DBBroker {
     public List<Korisnik> vratiSveKorisnike() {
         try {
             List<Korisnik> korisnici = new ArrayList<>();
-            String query = "SELECT korisnikID, ime, prezime, email, grad, telefon, username, sifra FROM korisnik";
+            String query = "SELECT korisnikID, ime, prezime, email, grad, telefon, username, sifraFROM korisnik";
             System.out.println(query);
 
             Statement statement = connection.createStatement();
@@ -326,7 +326,7 @@ public class DBBroker {
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("t.karakteristike"));
+                t.setModel(rs.getString("t.karakteristike"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();
@@ -389,7 +389,7 @@ public class DBBroker {
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("t.karakteristike"));
+                t.setModel(rs.getString("t.karakteristike"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();

@@ -11,17 +11,19 @@ public class IznajmljivanjeTrotineta {
     private double ukupnaCena;
     private Korisnik korisnik;
     private Trotinet trotinet;
+    private Osoba osoba;
 
 
     public IznajmljivanjeTrotineta() {
     }
 
-    public IznajmljivanjeTrotineta(Long iznajmljivanjeID, Date datumVreme, double brojSati, Korisnik korisnik, Trotinet trotinet) {
+    public IznajmljivanjeTrotineta(Long iznajmljivanjeID, Date datumVreme, double brojSati, Korisnik korisnik, Trotinet trotinet, Osoba osoba) {
         this.iznajmljivanjeID = iznajmljivanjeID;
         this.datumVreme = datumVreme;
         this.brojSati = brojSati;
         this.korisnik = korisnik;
         this.trotinet = trotinet;
+        this.osoba = osoba;
     }
 
     public Long getIznajmljivanjeID() {
@@ -53,11 +55,11 @@ public class IznajmljivanjeTrotineta {
     }
 
     public double getUkupnaCena() {
-        return izracunajUkupnuCenu(this.brojSati, this.cena.getPocetnaCena(this.trotinet), this.cena.getCenaPoSatu(this.trotinet), this.trotinet);
+        return izracunajUkupnuCenu(this.brojSati, this.cena.getPocetnaCena(this.trotinet), this.cena.getCenaPoSatu(), this.trotinet);
     }
 
     private double izracunajUkupnuCenu(Double brojSati, Double pocetnaCena, Double cenaPoSatu, Trotinet t) {
-        this.ukupnaCena = cena.getPocetnaCena(t) + (brojSati * cena.getCenaPoSatu(t));
+        this.ukupnaCena = cena.getPocetnaCena(t) + (brojSati * cena.getCenaPoSatu());
         return ukupnaCena;
     }
 
@@ -69,13 +71,13 @@ public class IznajmljivanjeTrotineta {
         this.korisnik = korisnik;
     }
 
-//    public Administrator getAdministrator() {
-//        return administrator;
-//    }
-//
-//    public void setAdministrator(Administrator administrator) {
-//        this.administrator = administrator;
-//    }
+    public Osoba getOsoba() {
+        return osoba;
+    }
+
+    public void setOsoba(Osoba osoba) {
+        this.osoba = osoba;
+    }
 
     public Trotinet getTrotinet() {
         return trotinet;
@@ -91,9 +93,11 @@ public class IznajmljivanjeTrotineta {
                 "iznajmljivanjeID=" + iznajmljivanjeID +
                 ", datumVreme=" + datumVreme +
                 ", brojSati=" + brojSati +
+                ", cena=" + cena +
                 ", ukupnaCena=" + ukupnaCena +
                 ", korisnik=" + korisnik +
                 ", trotinet=" + trotinet +
+                ", osoba=" + osoba +
                 '}';
     }
 }

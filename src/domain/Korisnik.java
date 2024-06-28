@@ -3,13 +3,15 @@ package domain;
 public class Korisnik {
 
     private Long korisnikID;
+    private Long brojLicneKarte;
     private String ime;
     private String prezime;
     private String email;
-    private String username;
-    private String sifra;
     private GradEnum grad;
     private String telefon;
+    private String username;
+    private String sifra;
+    private TipKorisnika tipKorisnika;
 
     public Korisnik() {
     }
@@ -88,16 +90,35 @@ public class Korisnik {
         this.korisnikID = korisnikID;
     }
 
+    public TipKorisnika getTipKorisnika() {
+        return tipKorisnika;
+    }
+
+    public void setTipKorisnika(TipKorisnika tipKorisnika) {
+        this.tipKorisnika = tipKorisnika;
+    }
+
+    public Long getBrojLicneKarte() {
+        return brojLicneKarte;
+    }
+
+    public void setBrojLicneKarte(Long brojLicneKarte) {
+        this.brojLicneKarte = brojLicneKarte;
+    }
+
     @Override
     public String toString() {
         return "Korisnik{" +
                 "korisnikID=" + korisnikID +
+                ", brojLicneKarte=" + brojLicneKarte +
                 ", ime='" + ime + '\'' +
                 ", prezime='" + prezime + '\'' +
                 ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
                 ", grad=" + grad +
                 ", telefon='" + telefon + '\'' +
+                ", username='" + username + '\'' +
+                ", sifra='" + sifra + '\'' +
+                ", tipKorisnika=" + tipKorisnika +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package db;
 
 import domain.*;
+import repository.db.KorisnikRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,13 +59,15 @@ public class TestDB {
 //        System.out.println("Kreiran je user sa id " + k2.getkorisnikID());
 
        // System.out.println(db.vratiVoznjePoKriterijumu("markomarkovic"));
-        try{
-            db.potvrdiTransakciju();
-        }catch(Exception e){
-            db.ponistiTransakciju();
-        }finally {
-            db.raskiniKonekciju();
-        }
+//        try{
+//            db.potvrdiTransakciju();
+//        }catch(Exception e){
+//            db.ponistiTransakciju();
+//        }finally {
+//            db.raskiniKonekciju();
+//        }
+        List <Korisnik> korisnici = db.vratiSveKorisnike();
+        System.out.println(korisnici);
 
     }
 }

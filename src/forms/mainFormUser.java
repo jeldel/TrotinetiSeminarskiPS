@@ -1,6 +1,8 @@
 package forms;
 
 import domain.VrstaTrotinetaEnum;
+import forms.osobaForms.CreateOsobaForm;
+import forms.voznjeForms.VoznjeNovaForm;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -9,9 +11,8 @@ public class mainFormUser extends JDialog {
     private JPanel contentPane;
     private JButton buttonCancel;
     private JLabel lblWelcome;
-    private JButton btnSearchTrotinet;
-    private JLabel lblSearch;
-    private JComboBox cmbTrotinet;
+    private JButton btnAddOsoba;
+    private JButton btnCreateVoznja;
 
     public mainFormUser() {
         setContentPane(contentPane);
@@ -19,12 +20,7 @@ public class mainFormUser extends JDialog {
         setModal(true);
         setBounds(500,200,400,200);
 
-        try {
-            prepareView();
-        }catch (Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Greska! " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -46,16 +42,21 @@ public class mainFormUser extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        btnAddOsoba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CreateOsobaForm().setVisible(true);
+            }
+        });
+        btnCreateVoznja.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new VoznjeNovaForm().setVisible(true);
+            }
+        });
     }
 
-    private void prepareView() {
-        cmbTrotinet.removeAllItems();
-
-        for(VrstaTrotinetaEnum vrsta: VrstaTrotinetaEnum.values()) {
-            cmbTrotinet.addItem(vrsta);
-        }
-        cmbTrotinet.addItem("Svi trotineti");
-    }
 
     private void onCancel() {
         // add your code here if necessary

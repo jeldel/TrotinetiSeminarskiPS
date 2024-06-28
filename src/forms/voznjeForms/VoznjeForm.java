@@ -40,7 +40,7 @@ public class VoznjeForm extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new CreateVoznjaFormTM().setVisible(true);
+                new VoznjeNovaForm().setVisible(true);
             }
         });
         btnSearch.addActionListener(new ActionListener() {

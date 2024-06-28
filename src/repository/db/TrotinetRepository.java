@@ -16,7 +16,7 @@ public class TrotinetRepository extends DBRepository {
     public List<Trotinet> getAll() {
         try {
             List<Trotinet> trotineti = new ArrayList<>();
-            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike FROM trotinet";
+            String query = "SELECT trotinetID, vrstaTrotineta, model FROM trotinet";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
             Statement statement = connection.createStatement();
@@ -25,7 +25,7 @@ public class TrotinetRepository extends DBRepository {
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("karakteristike"));
+                t.setModel(rs.getString("model"));
                 trotineti.add(t);
             }
             rs.close();
@@ -41,7 +41,7 @@ public class TrotinetRepository extends DBRepository {
     public List<Trotinet> getAllByVrsta(VrstaTrotinetaEnum vrstaTrotinetaEnum) {
         try {
             List<Trotinet> trotineti = new ArrayList<>();
-            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike FROM trotinet WHERE vrstaTrotineta = '" + vrstaTrotinetaEnum + "'";
+            String query = "SELECT trotinetID, vrstaTrotineta, model FROM trotinet WHERE vrstaTrotineta = '" + vrstaTrotinetaEnum + "'";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
             Statement statement = connection.createStatement();
@@ -50,7 +50,7 @@ public class TrotinetRepository extends DBRepository {
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("karakteristike"));
+                t.setModel(rs.getString("model"));
                 trotineti.add(t);
             }
             rs.close();
@@ -66,7 +66,7 @@ public class TrotinetRepository extends DBRepository {
 
     public Trotinet getById(Long id) {
         try {
-            String query = "SELECT trotinetID, vrstaTrotineta, karakteristike FROM trotinet WHERE trotinetID = " + id;
+            String query = "SELECT trotinetID, vrstaTrotineta, model FROM trotinet WHERE trotinetID = " + id;
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
             Statement statement = connection.createStatement();
@@ -75,7 +75,7 @@ public class TrotinetRepository extends DBRepository {
             while (rs.next()) {
                 t.setTrotinetID(rs.getLong("trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("vrstaTrotineta")));
-                t.setKarakteristike(rs.getString("karakteristike"));
+                t.setModel(rs.getString("model"));
             }
             rs.close();
             statement.close();
@@ -89,13 +89,13 @@ public class TrotinetRepository extends DBRepository {
 
     public void add(Trotinet trotinet) {
         try {
-            String query = "INSERT INTO trotinet (vrstaTrotineta, karakteristike) VALUES (?,?)";
+            String query = "INSERT INTO trotinet (vrstaTrotineta, model) VALUES (?,?)";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, trotinet.getVrstaTrotineta().name());
-            statement.setString(2, trotinet.getKarakteristike());
+            statement.setString(2, trotinet.getModel());
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {

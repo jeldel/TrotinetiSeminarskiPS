@@ -2,8 +2,8 @@ package repository.db;
 
 import domain.GradEnum;
 import domain.Korisnik;
+import domain.TipKorisnika;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class KorisnikRepository extends DBRepository{
     public List<Korisnik> getAll() {
         try {
             List<Korisnik> korisnici = new ArrayList<>();
-            String query = "SELECT korisnikID, ime, prezime, email, grad, telefon, username, sifra FROM korisnik";
+            String query = "SELECT korisnikID, brojLicneKarte, ime, prezime, email, grad, telefon, username, sifra, tipKorisnika FROM korisnik";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
             Statement statement = connection.createStatement();
@@ -25,6 +25,7 @@ public class KorisnikRepository extends DBRepository{
             while (rs.next()) {
                 Korisnik k = new Korisnik();
                 k.setkorisnikID(rs.getLong("korisnikID"));
+                k.setBrojLicneKarte(rs.getLong("brojLicneKarte"));
                 k.setIme(rs.getString("ime"));
                 k.setPrezime(rs.getString("prezime"));
                 k.setEmail(rs.getString("email"));
@@ -32,6 +33,7 @@ public class KorisnikRepository extends DBRepository{
                 k.setTelefon(rs.getString("telefon"));
                 k.setUsername(rs.getString("username"));
                 k.setSifra(rs.getString("sifra"));
+                k.setTipKorisnika(TipKorisnika.valueOf(rs.getString("tipKorisnika")));
                 korisnici.add(k);
             }
             rs.close();
@@ -48,7 +50,7 @@ public class KorisnikRepository extends DBRepository{
     public List<Korisnik> getAllByUsername(String username) {
         try {
             List<Korisnik> korisnici = new ArrayList<>();
-            String query = "SELECT korisnikID, ime, prezime, email, grad, telefon, username, sifra FROM korisnik WHERE username = '" + username +"'";
+            String query = "SELECT korisnikID, brojLicneKarte, ime, prezime, email, grad, telefon, username, sifra, tipKorisnika FROM korisnik WHERE username = '" + username +"'";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
             Statement statement = connection.createStatement();
@@ -56,6 +58,7 @@ public class KorisnikRepository extends DBRepository{
             while (rs.next()) {
                 Korisnik k = new Korisnik();
                 k.setkorisnikID(rs.getLong("korisnikID"));
+                k.setBrojLicneKarte(rs.getLong("brojLicneKarte"));
                 k.setIme(rs.getString("ime"));
                 k.setPrezime(rs.getString("prezime"));
                 k.setEmail(rs.getString("email"));
@@ -63,6 +66,7 @@ public class KorisnikRepository extends DBRepository{
                 k.setTelefon(rs.getString("telefon"));
                 k.setUsername(rs.getString("username"));
                 k.setSifra(rs.getString("sifra"));
+                k.setTipKorisnika(TipKorisnika.valueOf(rs.getString("tipKorisnika")));
                 korisnici.add(k);
             }
             rs.close();
@@ -78,18 +82,20 @@ public class KorisnikRepository extends DBRepository{
 
     public void add(Korisnik korisnik){
         try {
-            String query = "INSERT INTO korisnik (ime, prezime, email, grad, telefon, username, sifra) VALUES (?,?,?,?,?,?,?)";
+            String query = "INSERT INTO korisnik (brojLicneKarte, ime, prezime, email, grad, telefon, username, sifra, tipKorisnika) VALUES (?,?,?,?,?,?,?,?,?)";
             System.out.println(query);
             connection = DBConnectionFactory.getInstance().getConnection();
 
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, korisnik.getIme());
-            statement.setString(2, korisnik.getPrezime());
-            statement.setString(3, korisnik.getEmail());
-            statement.setString(4, String.valueOf(korisnik.getGrad()));
-            statement.setString(5, korisnik.getTelefon());
-            statement.setString(6, korisnik.getUsername());
-            statement.setString(7, korisnik.getSifra());
+            statement.setLong(1, korisnik.getBrojLicneKarte());
+            statement.setString(2, korisnik.getIme());
+            statement.setString(3, korisnik.getPrezime());
+            statement.setString(4, korisnik.getEmail());
+            statement.setString(5, String.valueOf(korisnik.getGrad()));
+            statement.setString(6, korisnik.getTelefon());
+            statement.setString(7, korisnik.getUsername());
+            statement.setString(8, korisnik.getSifra());
+            statement.setString(9, String.valueOf(korisnik.getTipKorisnika()));
 
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
