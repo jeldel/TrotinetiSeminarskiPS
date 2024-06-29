@@ -22,7 +22,7 @@ public class IznajmljivanjeRepository extends DBRepository{
                     " it.trotinetID," +
                     " t.trotinetID," +
                     " t.vrstaTrotineta," +
-                    " t.karakteristike," +
+                    " t.model," +
                     " k.korisnikID," +
                     " k.ime," +
                     " k.prezime," +
@@ -48,7 +48,7 @@ public class IznajmljivanjeRepository extends DBRepository{
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
-                t.setModel(rs.getString("t.karakteristike"));
+                t.setModel(rs.getString("t.model"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();
@@ -85,7 +85,7 @@ public class IznajmljivanjeRepository extends DBRepository{
                     " it.trotinetID," +
                     " t.trotinetID," +
                     " t.vrstaTrotineta," +
-                    " t.karakteristike," +
+                    " t.model," +
                     " k.korisnikID," +
                     " k.ime," +
                     " k.prezime," +
@@ -111,7 +111,7 @@ public class IznajmljivanjeRepository extends DBRepository{
                 Trotinet t = new Trotinet();
                 t.setTrotinetID(rs.getLong("t.trotinetID"));
                 t.setVrstaTrotineta(VrstaTrotinetaEnum.valueOf(rs.getString("t.vrstaTrotineta")));
-                t.setModel(rs.getString("t.karakteristike"));
+                t.setModel(rs.getString("t.model"));
                 it.setTrotinet(t);
 
                 Korisnik k = new Korisnik();

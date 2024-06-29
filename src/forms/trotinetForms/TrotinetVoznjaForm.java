@@ -17,7 +17,6 @@ public class TrotinetVoznjaForm extends JDialog {
     private JTable tblTrotineti;
     private JComboBox cmbSearch;
     private JButton btnSearch;
-    private JButton btnAdd;
 
     public TrotinetVoznjaForm() {
         setContentPane(contentPane);
@@ -82,12 +81,6 @@ public class TrotinetVoznjaForm extends JDialog {
                     tblTrotineti.setModel(tableModelTrotinet);
                 }
 
-            }
-        });
-        btnAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new CreateTrotinetForm().setVisible(true);
             }
         });
     }

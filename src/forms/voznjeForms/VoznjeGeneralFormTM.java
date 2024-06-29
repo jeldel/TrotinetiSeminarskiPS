@@ -2,11 +2,15 @@ package forms.voznjeForms;
 
 import controller.Controller;
 import domain.IznajmljivanjeTrotineta;
+import domain.TipKorisnika;
 import forms.components.DatePicker;
 import forms.components.TableModelVoznja;
+import forms.mainFormUser;
+
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VoznjeGeneralFormTM extends JDialog {
@@ -58,11 +62,11 @@ public class VoznjeGeneralFormTM extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = txtSearch.getText().trim();
-                if(!username.isEmpty()) {
+                if (!username.isEmpty()) {
                     List<IznajmljivanjeTrotineta> voznje = Controller.getInstance().getAllByCriteria(username);
                     TableModelVoznja tableModelVoznja = new TableModelVoznja(voznje);
                     tblVoznje.setModel(tableModelVoznja);
-                } else{
+                } else {
                     List<IznajmljivanjeTrotineta> voznje = Controller.getInstance().getAllVoznje();
                     TableModelVoznja tableModelVoznja = new TableModelVoznja(voznje);
                     tblVoznje.setModel(tableModelVoznja);
@@ -77,10 +81,20 @@ public class VoznjeGeneralFormTM extends JDialog {
     }
 
     private void prepareTableVoznja() {
-        List<IznajmljivanjeTrotineta> voznje = Controller.getInstance().getAllVoznje();
+        List<IznajmljivanjeTrotineta> voznje = new ArrayList<>();
+        if (Controller.getInstance().getUlogovanKorisnik().getTipKorisnika() == TipKorisnika.Korisnik) {
+            voznje = Controller.getInstance().getAllByCriteria(Controller.getInstance().getUlogovanKorisnik().getUsername());
+            txtSearch.setEditable(false);
+            btnSearch.setEnabled(false);
+            btnEdit.setEnabled(false);
+        }
+        if (Controller.getInstance().getUlogovanKorisnik().getTipKorisnika() == TipKorisnika.Administrator) {
+            voznje = Controller.getInstance().getAllVoznje();
+
+        }
+
         TableModelVoznja tableModelVoznja = new TableModelVoznja(voznje);
         tblVoznje.setModel(tableModelVoznja);
-
         TableColumn tableColumnDate = tblVoznje.getColumnModel().getColumn(1);
         tableColumnDate.setCellEditor(new DatePicker());
     }
@@ -88,8 +102,14 @@ public class VoznjeGeneralFormTM extends JDialog {
 
     private void onCancel() {
         // add your code here if necessary
-        dispose();
-        new VoznjeForm().setVisible(true);
+
+        if (Controller.getInstance().getUlogovanKorisnik().getTipKorisnika() == TipKorisnika.Korisnik) {
+            dispose();
+            new mainFormUser().setVisible(true);
+        } else {
+            dispose();
+            new VoznjeForm().setVisible(true);
+        }
     }
 
     public static void main(String[] args) {

@@ -30,6 +30,8 @@ public class VoznjeNovaForm extends JDialog {
     private JLabel lblDate;
     private JButton btnSelectTrotinet;
     private JPanel datePickerPanel;
+    private JButton btnCancel;
+    private JButton btnGetAll;
     JDateChooser dateChooser;
 
     public VoznjeNovaForm() {
@@ -93,6 +95,19 @@ public class VoznjeNovaForm extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new TrotinetVoznjaForm().setVisible(true);
+            }
+        });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
+        btnGetAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new VoznjeGeneralFormTM().setVisible(true);
             }
         });
     }

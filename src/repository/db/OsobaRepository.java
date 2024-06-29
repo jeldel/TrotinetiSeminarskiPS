@@ -12,7 +12,7 @@ public class OsobaRepository extends DBRepository {
     public OsobaRepository() {
     }
 
-    public void add(Osoba osoba){
+    public void add(Osoba osoba) {
         try {
             String query = "INSERT INTO osoba (brojLicneKarte, ime, prezime) VALUES (?,?,?)";
             System.out.println(query);

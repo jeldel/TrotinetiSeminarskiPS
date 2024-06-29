@@ -2,6 +2,7 @@ package forms.osobaForms;
 
 import controller.Controller;
 import domain.Osoba;
+import domain.TipKorisnika;
 import forms.components.TableModelOsoba;
 import forms.voznjeForms.VoznjeNovaForm;
 
@@ -56,7 +57,6 @@ public class OsobeMainForm extends JDialog {
         btnCreateOsoba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new CreateOsobaForm().setVisible(true);
             }
         });
@@ -98,6 +98,9 @@ public class OsobeMainForm extends JDialog {
 
     private void prepareView() {
         List<Osoba> osobe = new ArrayList<>();
+        if(Controller.getInstance().getUlogovanKorisnik().getTipKorisnika() == TipKorisnika.Administrator){
+            osobe = Controller.getInstance().getAllOsoba();
+        }
         TableModelOsoba tableModelOsoba = new TableModelOsoba(osobe);
         tblOsobe.setModel(tableModelOsoba);
     }
