@@ -1,12 +1,14 @@
-package repository.db;
+package repository.db.impl;
 
 import domain.Osoba;
+import repository.db.DBConnectionFactory;
+import repository.db.DBRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OsobaRepository extends DBRepository {
+public class OsobaRepository implements DBRepository <Osoba, Long> {
     Connection connection;
 
     public OsobaRepository() {
@@ -57,7 +59,7 @@ public class OsobaRepository extends DBRepository {
         }
     }
 
-    public List<Osoba> getByBrojLK(Long brojLicneKarte) {
+    public List<Osoba> getAllByCriteria(Long brojLicneKarte) {
         try {
             List<Osoba> osobe = new ArrayList<>();
             String query = "SELECT brojLicneKarte, ime, prezime FROM osoba WHERE brojLicneKarte = " + brojLicneKarte;

@@ -5,10 +5,10 @@ import domain.IznajmljivanjeTrotineta;
 import domain.Korisnik;
 import domain.Trotinet;
 import domain.VrstaTrotinetaEnum;
-import repository.db.IznajmljivanjeRepository;
-import repository.db.KorisnikRepository;
-import repository.db.TrotinetRepository;
-import repository.db.OsobaRepository;
+import repository.db.impl.IznajmljivanjeRepository;
+import repository.db.impl.KorisnikRepository;
+import repository.db.impl.TrotinetRepository;
+import repository.db.impl.OsobaRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -150,7 +150,7 @@ public class Controller {
         return storageTrotinet.getAllByVrsta(vrstaTrotinetaEnum);
     }
 
-    public void deleteTrotinet(Long trotinetID) throws SQLException {
+    public void deleteTrotinet(Long trotinetID) throws Exception {
         storageTrotinet.connect();
         try{
             storageTrotinet.delete(trotinetID);
@@ -165,7 +165,7 @@ public class Controller {
     }
 
     public List<Korisnik> getAllByUsername(String username){
-        return storageKorisnik.getAllByUsername(username);
+        return storageKorisnik.getAllByCriteria(username);
     }
 
     public void deleteKorisnik(String username) throws SQLException {
@@ -183,7 +183,7 @@ public class Controller {
     }
 
     public List<Osoba> getByBrojLK(Long brojLicneKarte){
-        return storageOsoba.getByBrojLK(brojLicneKarte);
+        return storageOsoba.getAllByCriteria(brojLicneKarte);
     }
 
     public void setIzabranaOsoba(Osoba izabranaOsoba) {

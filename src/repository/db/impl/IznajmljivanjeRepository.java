@@ -1,12 +1,14 @@
-package repository.db;
+package repository.db.impl;
 
 import domain.*;
+import repository.db.DBConnectionFactory;
+import repository.db.DBRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IznajmljivanjeRepository extends DBRepository{
+public class IznajmljivanjeRepository implements DBRepository <IznajmljivanjeTrotineta, String>{
     Connection connection;
 
     public IznajmljivanjeRepository() {}
@@ -164,6 +166,11 @@ public class IznajmljivanjeRepository extends DBRepository{
             System.out.println("Neuspesno kreirana voznja");
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void delete(String criteria) throws Exception {
+        throw new UnsupportedOperationException("No implementation yet.");
     }
 
     public void addAll(List<IznajmljivanjeTrotineta> voznje){

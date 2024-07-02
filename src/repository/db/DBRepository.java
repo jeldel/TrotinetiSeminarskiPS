@@ -1,21 +1,24 @@
 package repository.db;
 
+import repository.Repository;
+
 import java.sql.SQLException;
 
-public class DBRepository {
+public interface DBRepository<T, K> extends Repository<T, K> {
 
-    public void connect() throws SQLException {
+    default public void connect() throws SQLException {
         DBConnectionFactory.getInstance().getConnection();
     }
 
-    public void disconnect() throws SQLException {
+    default public void disconnect() throws SQLException {
         DBConnectionFactory.getInstance().getConnection().close();
     }
 
-    public void commit() throws SQLException{
+    default public void commit() throws SQLException {
         DBConnectionFactory.getInstance().getConnection().commit();
     }
-    public void rollback() throws SQLException{
+
+    default public void rollback() throws SQLException {
         DBConnectionFactory.getInstance().getConnection().rollback();
     }
 

@@ -1,14 +1,16 @@
-package repository.db;
+package repository.db.impl;
 
 import domain.GradEnum;
 import domain.Korisnik;
 import domain.TipKorisnika;
+import repository.db.DBConnectionFactory;
+import repository.db.DBRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KorisnikRepository extends DBRepository{
+public class KorisnikRepository implements DBRepository <Korisnik, String> {
 
     Connection connection;
 
@@ -47,7 +49,7 @@ public class KorisnikRepository extends DBRepository{
 
     }
 
-    public List<Korisnik> getAllByUsername(String username) {
+    public List<Korisnik> getAllByCriteria(String username) {
         try {
             List<Korisnik> korisnici = new ArrayList<>();
             String query = "SELECT korisnikID, brojLicneKarte, ime, prezime, email, grad, telefon, username, sifra, tipKorisnika FROM korisnik WHERE username = '" + username +"'";

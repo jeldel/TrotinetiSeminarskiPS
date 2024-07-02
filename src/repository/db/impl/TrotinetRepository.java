@@ -1,13 +1,15 @@
-package repository.db;
+package repository.db.impl;
 
 import domain.Trotinet;
 import domain.VrstaTrotinetaEnum;
+import repository.db.DBConnectionFactory;
+import repository.db.DBRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrotinetRepository extends DBRepository {
+public class TrotinetRepository implements DBRepository <Trotinet, Long> {
     Connection connection;
 
     public TrotinetRepository() {
@@ -36,6 +38,11 @@ public class TrotinetRepository extends DBRepository {
             System.out.println("Neuspesno ucitana lista trotineta");
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<Trotinet> getAllByCriteria(Long criteria) throws Exception {
+        throw new UnsupportedOperationException("No implementation yet.");
     }
 
     public List<Trotinet> getAllByVrsta(VrstaTrotinetaEnum vrstaTrotinetaEnum) {

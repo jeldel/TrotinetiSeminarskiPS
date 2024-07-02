@@ -1,13 +1,5 @@
 package db;
 
-import domain.*;
-import repository.db.KorisnikRepository;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Calendar;
-import java.util.List;
-
 public class TestDB {
     public static void main(String[] args) throws Exception {
         DBBroker db = new DBBroker();
@@ -66,8 +58,6 @@ public class TestDB {
 //        }finally {
 //            db.raskiniKonekciju();
 //        }
-        List <Korisnik> korisnici = db.vratiSveKorisnike();
-        System.out.println(korisnici);
 
     }
 }
